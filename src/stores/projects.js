@@ -58,7 +58,7 @@ export const useProjectStore = defineStore('projects', {
           completed_at: '2023-05-23',
           collaborated: true,
           tools: ['laravel', 'digitalocean'],
-          is_live: true,
+          is_live: false,
           is_staging: false
         },
         {
@@ -80,7 +80,7 @@ export const useProjectStore = defineStore('projects', {
           collaborated: true,
           tools: ['laravel', 'digitalocean', 'vuejs'],
           is_live: false,
-          is_staging: true
+          is_staging: false
         },
         {
           name: 'Connect Nigeria',
