@@ -146,7 +146,7 @@ function getColor(tool) {
 
         <div class="section-content clearfix">
           <img
-            src="/img/adeyinka.jpg"
+            src="/img/adeyinka.jpeg"
             width="160"
             :alt="profileStore.name"
             class="img-fluid img-thumbnail ms-3 float-end"
