@@ -382,11 +382,11 @@ function getColor(tool) {
           </Swiper>
           <h5>Others:</h5>
           <p>
-            🏠 Vuex, Pinia, PestPHP <br>
-            🎨 Tailwind, Bootstrap, Photoshop <br>
             🔏 PHP, JavaScript <br>
+            🏠 Vuex, Pinia, PestPHP <br>
             👶🏻 GoLang, Python <br>
-            🔲 Visual Studio Code <br>
+            🗒️ Visual Studio Code, Notion <br>
+            🎨 Tailwind, Bootstrap, Photoshop <br>
           </p>
         </div>
       </div>
