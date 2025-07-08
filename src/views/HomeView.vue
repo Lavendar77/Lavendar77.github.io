@@ -47,7 +47,7 @@ function getColor(tool) {
           {{ profileStore.name }}
         </h1>
         <h2 class="subtitle mb-5">
-          Full Stack Software Engineer
+          Software Engineer
         </h2>
         <div class="dropdown">
           <button
