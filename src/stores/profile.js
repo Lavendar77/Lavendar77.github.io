@@ -10,8 +10,7 @@ export const useProfileStore = defineStore('profile', {
       github: 'https://github.com/lavendar77/',
       gitlab: 'https://gitlab.com/lavendar77/',
       twitter: 'https://twitter.com/_fykay',
-      skype: 'https://join.skype.com/invite/kYlvM0lNPBwf',
-      drive: 'https://drive.google.com/file/d/1iVlP4fNT0XVv_aC8VDaSUeMHqQe9SL0k/view?usp=sharing'
+      drive: 'https://drive.google.com/file/d/17wjEZG9f9sC5u0ivzuQ3H3b0YIDNx29H/view?usp=sharing'
     }
   }
 })
