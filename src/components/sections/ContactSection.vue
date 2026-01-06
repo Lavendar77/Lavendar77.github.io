@@ -8,7 +8,7 @@
         I'm always open to discussing new opportunities, interesting projects, or technical
         challenges. Feel free to reach out.
       </p>
-      <div class="flex gap-6 justify-center items-center">
+      <div class="flex gap-6 justify-center items-center flex-wrap">
         <a
           href="mailto:contact@example.com"
           class="text-[var(--text)] hover:text-[var(--primary)] hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg)] rounded px-4 py-2"
@@ -30,6 +30,14 @@
           class="text-[var(--text)] hover:text-[var(--primary)] hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg)] rounded px-4 py-2"
         >
           LinkedIn
+        </a>
+        <a
+          href="https://twitter.com/_fykay"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-[var(--text)] hover:text-[var(--primary)] hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg)] rounded px-4 py-2"
+        >
+          𝕏
         </a>
       </div>
     </div>

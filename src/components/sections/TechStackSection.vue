@@ -1,11 +1,18 @@
 <script setup lang="ts">
 const techStack = {
-  Languages: ['TypeScript', 'JavaScript', 'Python', 'PHP', 'Go', 'SQL'],
-  Frameworks: ['Vue.js', 'Node.js', 'Laravel', 'Symfony', 'Express'],
-  Infrastructure: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'CI/CD'],
-  Databases: ['PostgreSQL', 'MySQL', 'Redis', 'MongoDB', 'ClickHouse'],
-  Tooling: ['Git', 'ESLint', 'Prettier', 'Jest', 'Webpack', 'Vite'],
+  Languages: ['PHP', 'TypeScript', 'JavaScript', 'SQL'],
+  Frameworks: ['Laravel', 'Vue.js', 'Express'],
+  Runtime: ['Node.js'],
+  Architecture: [
+    'AWS',
+    'Serverless Architecture (Lambda, SQS, SNS)',
+    'Event-driven systems',
+    'Kafka (event streaming)',
+  ],
+  Databases: ['MySQL', 'PostgreSQL', 'Redis'],
+  Tooling: ['Git', 'Docker', 'GitHub Actions', 'ESLint', 'Prettier', 'Pest', 'Vite'],
 }
+
 </script>
 
 <template>

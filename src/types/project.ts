@@ -18,4 +18,6 @@ export interface Project {
   solution: string
   outcome: string
   previews: ProjectPreview[]
+  repo?: string
+  demo?: string
 }
