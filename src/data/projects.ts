@@ -2,11 +2,80 @@ import type { Project } from '@/types/project'
 
 export const projects: Project[] = [
   {
+    id: 'gerocare-cloud-migration',
+    title: 'Stabilizing a Healthcare Platform Through Cloud Migration',
+    problemStatement: 'Recurring downtime from shared hosting threatening critical healthcare workflows',
+    role: 'Lead Software Engineer',
+    context: 'Healthcare platform supporting time-critical doctor visits, prescriptions, and billing',
+    date: '2022',
+    company: {
+      name: 'Gerocare',
+      logo: '/img/logos/gerocare.svg',
+    },
+    stack: ['Laravel', 'Vue.js', 'Google Cloud', 'Nginx', 'GitHub Actions', 'Cloudflare'],
+    problem:
+      'The platform ran on shared cPanel hosting, causing frequent outages and failed background jobs. Applications became unreachable during peak usage, directly impacting medical reporting, prescriptions, and billing flows that needed to complete within strict time windows.',
+    solution:
+      'I led a full migration to Google Cloud Platform, designing a cost-efficient single-VM setup to host all services with Nginx virtual hosts. Databases were consolidated into Cloud SQL, files moved to GCS, and CI/CD pipelines introduced with GitHub Actions. The migration was executed via a planned, low-traffic cutover with rollback safeguards.',
+    outcome:
+      'Eliminated recurring production downtime. Achieved long-term platform stability with zero data loss. Improved operational reliability across medical, billing, and support teams. Infrastructure remained stable years after implementation.',
+    previews: [
+      {
+        id: 'migration-diagram',
+        type: 'diagram',
+        label: 'Cloud migration architecture',
+        content: `<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="50" width="120" height="60" fill="#361667" rx="4"/>
+          <text x="80" y="85" text-anchor="middle" fill="#BEAED3" font-size="11">cPanel Hosting</text>
+          <text x="80" y="100" text-anchor="middle" fill="#BEAED3" font-size="9">(Legacy)</text>
+          <line x1="140" y1="80" x2="200" y2="80" stroke="#BEAED3" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <rect x="200" y="50" width="120" height="60" fill="#361667" rx="4"/>
+          <text x="260" y="85" text-anchor="middle" fill="#BEAED3" font-size="11">GCP VM</text>
+          <text x="260" y="100" text-anchor="middle" fill="#BEAED3" font-size="9">(Nginx)</text>
+          <rect x="200" y="150" width="120" height="60" fill="#361667" rx="4"/>
+          <text x="260" y="185" text-anchor="middle" fill="#BEAED3" font-size="11">Cloud SQL</text>
+          <line x1="260" y1="110" x2="260" y2="150" stroke="#BEAED3" stroke-width="2"/>
+          <rect x="200" y="230" width="120" height="60" fill="#361667" rx="4"/>
+          <text x="260" y="265" text-anchor="middle" fill="#BEAED3" font-size="11">GCS</text>
+          <line x1="260" y1="210" x2="260" y2="230" stroke="#BEAED3" stroke-width="2"/>
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+              <polygon points="0 0, 10 3, 0 6" fill="#BEAED3"/>
+            </marker>
+          </defs>
+        </svg>`,
+      },
+      {
+        id: 'uptime-metric',
+        type: 'metric',
+        label: 'Downtime elimination',
+        content: 'Zero recurring outages',
+      },
+      {
+        id: 'stability-metric',
+        type: 'metric',
+        label: 'Platform stability',
+        content: 'Years of stable operation',
+      },
+      {
+        id: 'data-metric',
+        type: 'metric',
+        label: 'Data integrity',
+        content: 'Zero data loss',
+      },
+    ],
+    demo: 'https://gerocare.org',
+  },
+  {
     id: 'distributed-api',
     title: 'Distributed API Platform',
     problemStatement: 'Legacy monolithic API struggling with scale and reliability',
     role: 'Lead Backend Engineer',
     context: 'E-commerce platform serving 2M+ daily requests',
+    date: '2023',
+    company: {
+      name: 'TechCorp',
+    },
     stack: ['TypeScript', 'Node.js', 'PostgreSQL', 'Redis', 'Docker', 'Kubernetes'],
     problem:
       'The existing monolithic API was experiencing frequent downtime during peak traffic, with response times degrading to 5+ seconds. Database connection pooling was insufficient, and the single point of failure architecture meant any service issue brought down the entire platform.',
@@ -73,62 +142,15 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'data-pipeline',
-    title: 'Real-time Data Processing Pipeline',
-    problemStatement: 'Batch processing causing 24-hour delays in analytics',
-    role: 'Senior Backend Engineer',
-    context: 'Analytics platform processing 50M+ events daily',
-    stack: ['Python', 'Apache Kafka', 'Apache Spark', 'ClickHouse', 'AWS S3'],
-    problem:
-      'The analytics platform relied on nightly batch jobs that processed events with a 24-hour delay. Business teams needed real-time insights for decision-making, and the batch system couldn\'t scale to handle traffic spikes during marketing campaigns.',
-    solution:
-      'Built a stream processing pipeline using Kafka for event ingestion, Spark Streaming for real-time transformations, and ClickHouse for time-series analytics storage. Implemented exactly-once processing semantics and automated scaling based on queue depth. Added monitoring and alerting for pipeline health.',
-    outcome:
-      'Reduced data latency from 24 hours to under 5 seconds. Enabled real-time dashboards and alerts. System now handles 3x peak load with auto-scaling. Reduced infrastructure costs by 25% compared to batch processing approach.',
-    previews: [
-      {
-        id: 'pipeline-diagram',
-        type: 'diagram',
-        label: 'Data pipeline flow',
-        content: `<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-          <rect x="20" y="80" width="80" height="40" fill="#361667" rx="4"/>
-          <text x="60" y="105" text-anchor="middle" fill="#BEAED3" font-size="11">Event Source</text>
-          <rect x="140" y="80" width="80" height="40" fill="#361667" rx="4"/>
-          <text x="180" y="105" text-anchor="middle" fill="#BEAED3" font-size="11">Kafka</text>
-          <rect x="260" y="80" width="80" height="40" fill="#361667" rx="4"/>
-          <text x="300" y="105" text-anchor="middle" fill="#BEAED3" font-size="11">Spark</text>
-          <rect x="260" y="20" width="80" height="40" fill="#361667" rx="4"/>
-          <text x="300" y="45" text-anchor="middle" fill="#BEAED3" font-size="11">ClickHouse</text>
-          <line x1="100" y1="100" x2="140" y2="100" stroke="#BEAED3" stroke-width="2" marker-end="url(#arrowhead)"/>
-          <line x1="220" y1="100" x2="260" y2="100" stroke="#BEAED3" stroke-width="2" marker-end="url(#arrowhead)"/>
-          <line x1="300" y1="80" x2="300" y2="60" stroke="#BEAED3" stroke-width="2" marker-end="url(#arrowhead)"/>
-          <defs>
-            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-              <polygon points="0 0, 10 3, 0 6" fill="#BEAED3"/>
-            </marker>
-          </defs>
-        </svg>`,
-      },
-      {
-        id: 'latency-metric',
-        type: 'metric',
-        label: 'Processing latency',
-        content: '< 5 seconds (down from 24 hours)',
-      },
-      {
-        id: 'throughput-metric',
-        type: 'metric',
-        label: 'Event throughput',
-        content: '50M+ events/day',
-      },
-    ],
-  },
-  {
     id: 'developer-portfolio',
     title: 'Developer Portfolio Website',
     problemStatement: 'Need a modern, performant portfolio to showcase work and attract opportunities',
     role: 'Full Stack Developer',
     context: 'Personal project',
+    date: '2024',
+    company: {
+      name: 'Personal',
+    },
     stack: ['Vue.js', 'TypeScript', 'Vite', 'Tailwind CSS'],
     problem:
       'Traditional portfolio websites are often bloated, slow, and don\'t effectively communicate technical skills. Many developers struggle to create a portfolio that balances visual appeal with performance and accessibility.',

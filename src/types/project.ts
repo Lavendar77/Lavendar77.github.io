@@ -20,4 +20,9 @@ export interface Project {
   previews: ProjectPreview[]
   repo?: string
   demo?: string
+  date: string // Format: "YYYY" or "YYYY-MM" or "YYYY-MM-DD"
+  company: {
+    name: string
+    logo?: string // Optional logo URL or path
+  }
 }

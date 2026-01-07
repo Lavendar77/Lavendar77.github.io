@@ -62,22 +62,34 @@ const hasProblemSolution = computed(() => {
       >
         <div class="flex-1 min-w-0">
           <div class="flex items-start justify-between gap-4 mb-2">
-            <h3 class="text-xl font-bold text-[var(--text)]">{{ project.title }}</h3>
-            <svg
-              class="w-5 h-5 text-[var(--text-muted)] flex-shrink-0 transition-transform duration-300 mt-1"
-              :class="localExpanded ? 'rotate-180' : ''"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
+            <h3 class="text-xl font-bold text-[var(--text)] flex-1">{{ project.title }}</h3>
+            <div class="flex items-center gap-3 flex-shrink-0">
+              <!-- Company Badge -->
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg">
+                <img
+                  v-if="project.company.logo"
+                  :src="project.company.logo"
+                  :alt="`${project.company.name} logo`"
+                  class="w-4 h-4 object-contain flex-shrink-0"
+                />
+                <span class="text-xs font-medium text-[var(--text-muted)]">{{ project.company.name }}</span>
+              </div>
+              <svg
+                class="w-5 h-5 text-[var(--text-muted)] flex-shrink-0 transition-transform duration-300"
+                :class="localExpanded ? 'rotate-180' : ''"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
           </div>
           <p class="text-sm text-[var(--primary)] mb-2">{{ project.problemStatement }}</p>
           <div class="flex flex-wrap gap-1.5 mb-2">
@@ -144,7 +156,7 @@ const hasProblemSolution = computed(() => {
               rel="noopener noreferrer"
               class="text-sm text-[var(--primary)] hover:text-[var(--primary)]/80 hover:underline transition-colors"
             >
-              View Live Demo →
+              Visit Live Site →
             </a>
           </div>
         </div>
