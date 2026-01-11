@@ -4,9 +4,11 @@ export const projects: Project[] = [
   {
     id: 'gerocare-cloud-migration',
     title: 'Stabilizing a Healthcare Platform Through Cloud Migration',
-    problemStatement: 'Recurring downtime from shared hosting threatening critical healthcare workflows',
+    problemStatement:
+      'Recurring downtime from shared hosting threatening critical healthcare workflows',
     role: 'Lead Software Engineer',
-    context: 'Healthcare platform supporting time-critical doctor visits, prescriptions, and billing',
+    context:
+      'Healthcare platform supporting time-critical doctor visits, prescriptions, and billing',
     date: '2022',
     company: {
       name: 'Gerocare',
@@ -228,7 +230,8 @@ export const projects: Project[] = [
   {
     id: 'developer-portfolio',
     title: 'Developer Portfolio Website',
-    problemStatement: 'Need a modern, performant portfolio to showcase work and attract opportunities',
+    problemStatement:
+      'Need a modern, performant portfolio to showcase work and attract opportunities',
     role: 'Full Stack Developer',
     context: 'Personal project',
     date: '2024',
@@ -237,7 +240,7 @@ export const projects: Project[] = [
     },
     stack: ['Vue.js', 'TypeScript', 'Vite', 'Tailwind CSS'],
     problem:
-      'Traditional portfolio websites are often bloated, slow, and don\'t effectively communicate technical skills. Many developers struggle to create a portfolio that balances visual appeal with performance and accessibility.',
+      "Traditional portfolio websites are often bloated, slow, and don't effectively communicate technical skills. Many developers struggle to create a portfolio that balances visual appeal with performance and accessibility.",
     solution:
       'Built a minimalist, typography-driven portfolio using Vue 3 Composition API and Tailwind CSS. Implemented a compact, expandable project layout with progressive disclosure. Optimized for performance with lazy loading, semantic HTML, and achieving 95+ Lighthouse scores. Designed with dark mode by default and full keyboard accessibility.',
     outcome:

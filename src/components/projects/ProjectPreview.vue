@@ -11,7 +11,9 @@ const props = withDefaults(defineProps<Props>(), {
   compact: false,
 })
 
-const isSvg = computed(() => props.preview.type === 'diagram' && props.preview.content.startsWith('<svg'))
+const isSvg = computed(
+  () => props.preview.type === 'diagram' && props.preview.content.startsWith('<svg')
+)
 const isCode = computed(() => props.preview.type === 'code')
 const isMetric = computed(() => props.preview.type === 'metric')
 </script>
@@ -31,10 +33,7 @@ const isMetric = computed(() => props.preview.type === 'metric')
       </pre>
     </div>
     <div v-else-if="isMetric" class="text-center">
-      <p
-        class="font-bold text-[var(--primary)]"
-        :class="compact ? 'text-xl' : 'text-3xl mb-2'"
-      >
+      <p class="font-bold text-[var(--primary)]" :class="compact ? 'text-xl' : 'text-3xl mb-2'">
         {{ preview.content }}
       </p>
     </div>

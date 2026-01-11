@@ -24,14 +24,17 @@ const isDragging = ref(false)
 const startX = ref(0)
 const scrollLeft = ref(0)
 
-watch(() => props.isExpanded, (newVal) => {
-  localExpanded.value = newVal
-  // Reset scroll position when expanded
-  if (newVal && swiperContainer.value) {
-    swiperContainer.value.scrollLeft = 0
-    activePreviewIndex.value = 0
+watch(
+  () => props.isExpanded,
+  newVal => {
+    localExpanded.value = newVal
+    // Reset scroll position when expanded
+    if (newVal && swiperContainer.value) {
+      swiperContainer.value.scrollLeft = 0
+      activePreviewIndex.value = 0
+    }
   }
-})
+)
 
 const toggleExpand = () => {
   const newState = !localExpanded.value
@@ -176,21 +179,29 @@ onUnmounted(() => {
     >
       <div
         class="flex items-center justify-between gap-4 py-4 px-4 -mx-4 rounded-lg transition-all duration-300 relative overflow-hidden"
-        :class="localExpanded ? 'border-b border-[var(--border)] pb-6' : 'hover:bg-[var(--bg-secondary)]/30 project-card-glow'"
+        :class="
+          localExpanded
+            ? 'border-b border-[var(--border)] pb-6'
+            : 'hover:bg-[var(--bg-secondary)]/30 project-card-glow'
+        "
       >
         <div class="flex-1 min-w-0">
           <div class="flex items-start justify-between gap-4 mb-2">
             <h3 class="text-xl font-bold text-[var(--text)] flex-1">{{ project.title }}</h3>
             <div class="flex items-center gap-3 flex-shrink-0">
               <!-- Company Badge -->
-              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg">
+              <div
+                class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg"
+              >
                 <img
                   v-if="project.company.logo"
                   :src="project.company.logo"
                   :alt="`${project.company.name} logo`"
                   class="w-4 h-4 object-contain flex-shrink-0"
                 />
-                <span class="text-xs font-medium text-[var(--text-muted)]">{{ project.company.name }}</span>
+                <span class="text-xs font-medium text-[var(--text-muted)]">{{
+                  project.company.name
+                }}</span>
               </div>
               <svg
                 class="w-5 h-5 text-[var(--text-muted)] flex-shrink-0 transition-transform duration-300 arrow-glow"
@@ -231,7 +242,7 @@ onUnmounted(() => {
       :id="`project-${project.id}-details`"
       class="overflow-hidden transition-all ease-out"
       :class="localExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'"
-      style="transition-duration: 300ms;"
+      style="transition-duration: 300ms"
     >
       <div class="grid md:grid-cols-2 gap-12 pt-6 pb-8">
         <div class="space-y-6">
@@ -242,7 +253,9 @@ onUnmounted(() => {
             </div>
 
             <div>
-              <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">Solution</h4>
+              <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">
+                Solution
+              </h4>
               <p class="text-[var(--text)]">{{ project.solution }}</p>
             </div>
           </div>
@@ -289,17 +302,21 @@ onUnmounted(() => {
             <div
               ref="swiperContainer"
               class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
-              style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory;"
+              style="
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x mandatory;
+              "
               @mousedown="handleMouseDown"
               @touchstart="handleTouchStart"
               @touchmove="handleTouchMove"
               @touchend="handleTouchEnd"
             >
               <div
-                v-for="(preview, index) in project.previews"
+                v-for="preview in project.previews"
                 :key="preview.id"
                 class="flex-shrink-0 w-full snap-center"
-                style="scroll-snap-align: center;"
+                style="scroll-snap-align: center"
               >
                 <ProjectPreview :preview="preview" />
               </div>

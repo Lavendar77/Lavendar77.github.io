@@ -12,7 +12,6 @@ const techStack = {
   Databases: ['MySQL', 'PostgreSQL', 'Redis'],
   Tooling: ['Git', 'Docker', 'GitHub Actions', 'ESLint', 'Prettier', 'Pest', 'Vite'],
 }
-
 </script>
 
 <template>
@@ -21,13 +20,11 @@ const techStack = {
       <h2 class="text-4xl font-bold text-[var(--text)] mb-16">Tech Stack</h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
         <div v-for="(items, category) in techStack" :key="category">
-          <h3 class="text-lg font-semibold text-[var(--text-muted)] uppercase mb-4">{{ category }}</h3>
+          <h3 class="text-lg font-semibold text-[var(--text-muted)] uppercase mb-4">
+            {{ category }}
+          </h3>
           <ul class="space-y-2">
-            <li
-              v-for="item in items"
-              :key="item"
-              class="text-[var(--text)] font-mono text-sm"
-            >
+            <li v-for="item in items" :key="item" class="text-[var(--text)] font-mono text-sm">
               {{ item }}
             </li>
           </ul>

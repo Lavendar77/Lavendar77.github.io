@@ -15,15 +15,35 @@ const scrollToContact = () => {
 </script>
 
 <template>
-  <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden bg-[var(--bg)]">
+  <section
+    id="hero"
+    class="min-h-screen flex items-center justify-center relative overflow-hidden bg-[var(--bg)]"
+  >
     <!-- Subtle grid pattern (code-like structure) -->
-    <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(190, 174, 211, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(190, 174, 211, 0.1) 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <div
+      class="absolute inset-0 opacity-[0.03]"
+      style="
+        background-image:
+          linear-gradient(rgba(190, 174, 211, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(190, 174, 211, 0.1) 1px, transparent 1px);
+        background-size: 40px 40px;
+      "
+    ></div>
 
     <!-- Code-like lines flowing -->
     <div class="absolute inset-0 overflow-hidden opacity-10">
-      <div class="absolute top-1/4 left-0 w-full h-px bg-[var(--primary)]/30 animate-code-flow" style="animation-delay: 0s;"></div>
-      <div class="absolute top-1/2 left-0 w-full h-px bg-[var(--primary)]/20 animate-code-flow" style="animation-delay: 2s; animation-duration: 10s;"></div>
-      <div class="absolute top-3/4 left-0 w-full h-px bg-[var(--primary)]/25 animate-code-flow" style="animation-delay: 4s; animation-duration: 12s;"></div>
+      <div
+        class="absolute top-1/4 left-0 w-full h-px bg-[var(--primary)]/30 animate-code-flow"
+        style="animation-delay: 0s"
+      ></div>
+      <div
+        class="absolute top-1/2 left-0 w-full h-px bg-[var(--primary)]/20 animate-code-flow"
+        style="animation-delay: 2s; animation-duration: 10s"
+      ></div>
+      <div
+        class="absolute top-3/4 left-0 w-full h-px bg-[var(--primary)]/25 animate-code-flow"
+        style="animation-delay: 4s; animation-duration: 12s"
+      ></div>
     </div>
 
     <!-- Network/data flow connections -->
@@ -34,8 +54,8 @@ const scrollToContact = () => {
     >
       <defs>
         <linearGradient id="connection-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:rgb(190, 174, 211);stop-opacity:0.4" />
-          <stop offset="100%" style="stop-color:rgb(54, 22, 103);stop-opacity:0.3" />
+          <stop offset="0%" style="stop-color: rgb(190, 174, 211); stop-opacity: 0.4" />
+          <stop offset="100%" style="stop-color: rgb(54, 22, 103); stop-opacity: 0.3" />
         </linearGradient>
       </defs>
       <!-- Data flow paths -->
@@ -46,7 +66,7 @@ const scrollToContact = () => {
         stroke-width="1.5"
         stroke-dasharray="5,5"
         class="animate-network-connect"
-        style="animation-delay: 0s;"
+        style="animation-delay: 0s"
       />
       <path
         d="M150,400 L350,380 L550,400 L750,390 L950,400"
@@ -55,7 +75,7 @@ const scrollToContact = () => {
         stroke-width="1.5"
         stroke-dasharray="5,5"
         class="animate-network-connect"
-        style="animation-delay: 1s;"
+        style="animation-delay: 1s"
       />
       <path
         d="M200,600 L400,580 L600,600 L800,590 L1000,600"
@@ -64,31 +84,73 @@ const scrollToContact = () => {
         stroke-width="1.5"
         stroke-dasharray="5,5"
         class="animate-network-connect"
-        style="animation-delay: 2s;"
+        style="animation-delay: 2s"
       />
       <!-- Connection nodes -->
-      <circle cx="300" cy="150" r="3" fill="rgb(190, 174, 211)" opacity="0.4" class="animate-data-pulse" />
-      <circle cx="550" cy="400" r="3" fill="rgb(190, 174, 211)" opacity="0.4" class="animate-data-pulse" style="animation-delay: 1s;" />
-      <circle cx="800" cy="590" r="3" fill="rgb(190, 174, 211)" opacity="0.4" class="animate-data-pulse" style="animation-delay: 2s;" />
+      <circle
+        cx="300"
+        cy="150"
+        r="3"
+        fill="rgb(190, 174, 211)"
+        opacity="0.4"
+        class="animate-data-pulse"
+      />
+      <circle
+        cx="550"
+        cy="400"
+        r="3"
+        fill="rgb(190, 174, 211)"
+        opacity="0.4"
+        class="animate-data-pulse"
+        style="animation-delay: 1s"
+      />
+      <circle
+        cx="800"
+        cy="590"
+        r="3"
+        fill="rgb(190, 174, 211)"
+        opacity="0.4"
+        class="animate-data-pulse"
+        style="animation-delay: 2s"
+      />
     </svg>
 
     <!-- Subtle radial gradients for depth -->
-    <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle at 20% 30%, rgba(190, 174, 211, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(54, 22, 103, 0.06) 0%, transparent 50%);"></div>
+    <div
+      class="absolute inset-0 pointer-events-none"
+      style="
+        background-image:
+          radial-gradient(circle at 20% 30%, rgba(190, 174, 211, 0.08) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(54, 22, 103, 0.06) 0%, transparent 50%);
+      "
+    ></div>
 
     <!-- Content -->
     <div class="container-custom text-center relative z-10 animate-fade-in-up">
       <div class="inline-block mb-4">
-        <div class="w-2 h-2 bg-[var(--primary)] rounded-full inline-block mr-2 animate-pulse-slow"></div>
-        <span class="text-sm text-[var(--text-muted)] font-mono tracking-wider">AVAILABLE FOR WORK</span>
-        <div class="w-2 h-2 bg-[var(--primary)] rounded-full inline-block ml-2 animate-pulse-slow" style="animation-delay: 1s;"></div>
+        <div
+          class="w-2 h-2 bg-[var(--primary)] rounded-full inline-block mr-2 animate-pulse-slow"
+        ></div>
+        <span class="text-sm text-[var(--text-muted)] font-mono tracking-wider"
+          >AVAILABLE FOR WORK</span
+        >
+        <div
+          class="w-2 h-2 bg-[var(--primary)] rounded-full inline-block ml-2 animate-pulse-slow"
+          style="animation-delay: 1s"
+        ></div>
       </div>
 
       <h1 class="text-5xl md:text-7xl font-bold mb-6 text-[var(--text)] relative font-mono">
         <span class="relative z-10 inline-block">
           <span class="inline-block">Adeyinka</span>
-          <span class="inline-block w-0.5 h-[0.9em] bg-[var(--primary)] ml-1 align-middle animate-cursor-blink"></span>
+          <span
+            class="inline-block w-0.5 h-[0.9em] bg-[var(--primary)] ml-1 align-middle animate-cursor-blink"
+          ></span>
         </span>
-        <span class="absolute inset-0 blur-sm opacity-30 text-[var(--primary)] font-mono" style="transform: translate(2px, 2px);">
+        <span
+          class="absolute inset-0 blur-sm opacity-30 text-[var(--primary)] font-mono"
+          style="transform: translate(2px, 2px)"
+        >
           Adeyinka
         </span>
       </h1>
@@ -114,7 +176,9 @@ const scrollToContact = () => {
           class="px-8 py-3 bg-[var(--primary)] text-[var(--secondary)] rounded-lg hover:opacity-90 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg)] font-semibold shadow-lg shadow-[var(--primary)]/20 relative overflow-hidden group"
         >
           <span class="relative z-10">View my work</span>
-          <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
+          <span
+            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"
+          ></span>
         </button>
         <button
           @click="scrollToContact"

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { calculateYearsOfExperience } from '@/utils/constants'
 
-const resumeViewLink = 'https://drive.google.com/file/d/17wjEZG9f9sC5u0ivzuQ3H3b0YIDNx29H/view?usp=sharing'
-const resumeDownloadLink = 'https://drive.google.com/uc?export=download&id=17wjEZG9f9sC5u0ivzuQ3H3b0YIDNx29H'
+const resumeViewLink =
+  'https://drive.google.com/file/d/17wjEZG9f9sC5u0ivzuQ3H3b0YIDNx29H/view?usp=sharing'
+const resumeDownloadLink =
+  'https://drive.google.com/uc?export=download&id=17wjEZG9f9sC5u0ivzuQ3H3b0YIDNx29H'
 
 const yearsOfExperience = calculateYearsOfExperience()
 </script>
@@ -13,10 +15,10 @@ const yearsOfExperience = calculateYearsOfExperience()
       <h2 class="text-4xl font-bold text-[var(--text)] mb-8">Experience</h2>
       <div class="max-w-3xl mb-12">
         <p class="text-lg text-[var(--text-muted)] leading-relaxed">
-          Over {{ yearsOfExperience }}+ years of experience building and scaling production systems for distributed teams.
-          I've worked on high-traffic applications, designed microservices architectures, and
-          optimized systems handling millions of requests daily. Focused on backend engineering,
-          system design, and infrastructure that powers reliable applications.
+          Over {{ yearsOfExperience }}+ years of experience building and scaling production systems
+          for distributed teams. I've worked on high-traffic applications, designed microservices
+          architectures, and optimized systems handling millions of requests daily. Focused on
+          backend engineering, system design, and infrastructure that powers reliable applications.
         </p>
       </div>
       <div class="flex flex-col sm:flex-row gap-4 justify-start">

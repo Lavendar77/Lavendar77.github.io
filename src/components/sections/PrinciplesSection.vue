@@ -60,7 +60,9 @@ const principles = [
           <!-- <div class="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> -->
 
           <!-- Number badge -->
-          <div class="absolute top-4 right-4 w-8 h-8 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center text-[var(--primary)] font-mono text-sm font-bold group-hover:scale-110 transition-transform duration-300">
+          <div
+            class="absolute top-4 right-4 w-8 h-8 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center text-[var(--primary)] font-mono text-sm font-bold group-hover:scale-110 transition-transform duration-300"
+          >
             {{ index + 1 }}
           </div>
 
@@ -69,14 +71,20 @@ const principles = [
               class="w-16 h-16 mb-6 text-[var(--primary)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 inline-flex items-center justify-center rounded-lg bg-[var(--primary)]/10 p-3"
               v-html="principle.icon"
             />
-            <h3 class="text-2xl font-bold text-[var(--text)] mb-4 group-hover:text-[var(--primary)] transition-colors">
+            <h3
+              class="text-2xl font-bold text-[var(--text)] mb-4 group-hover:text-[var(--primary)] transition-colors"
+            >
               {{ principle.title }}
             </h3>
-            <p class="text-[var(--text-muted)] leading-relaxed text-base">{{ principle.content }}</p>
+            <p class="text-[var(--text-muted)] leading-relaxed text-base">
+              {{ principle.content }}
+            </p>
           </div>
 
           <!-- Decorative corner element -->
-          <div class="absolute bottom-0 right-0 w-20 h-20 border-l-2 border-t-2 border-[var(--primary)]/10 rounded-tl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div
+            class="absolute bottom-0 right-0 w-20 h-20 border-l-2 border-t-2 border-[var(--primary)]/10 rounded-tl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
         </article>
       </div>
     </div>
