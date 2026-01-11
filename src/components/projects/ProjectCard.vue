@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import type { Project } from '@/types/project'
 import ProjectPreview from './ProjectPreview.vue'
 import PreviewIndicators from './PreviewIndicators.vue'
@@ -17,16 +17,21 @@ const emit = defineEmits<{
   toggle: [projectId: string, isExpanded: boolean]
 }>()
 
-const activePreviewIndex = ref(0)
 const localExpanded = ref(props.isExpanded)
+const swiperContainer = ref<HTMLElement | null>(null)
+const activePreviewIndex = ref(0)
+const isDragging = ref(false)
+const startX = ref(0)
+const scrollLeft = ref(0)
 
 watch(() => props.isExpanded, (newVal) => {
   localExpanded.value = newVal
+  // Reset scroll position when expanded
+  if (newVal && swiperContainer.value) {
+    swiperContainer.value.scrollLeft = 0
+    activePreviewIndex.value = 0
+  }
 })
-
-const selectPreview = (index: number) => {
-  activePreviewIndex.value = index
-}
 
 const toggleExpand = () => {
   const newState = !localExpanded.value
@@ -43,6 +48,119 @@ const handleKeydown = (event: KeyboardEvent) => {
 
 const hasProblemSolution = computed(() => {
   return props.project.problem && props.project.solution
+})
+
+// Swipe/drag handlers
+const handleMouseDown = (e: MouseEvent) => {
+  if (!swiperContainer.value) return
+  isDragging.value = true
+  startX.value = e.pageX - swiperContainer.value.offsetLeft
+  scrollLeft.value = swiperContainer.value.scrollLeft
+  swiperContainer.value.style.cursor = 'grabbing'
+  swiperContainer.value.style.userSelect = 'none'
+}
+
+const handleMouseLeave = () => {
+  if (!swiperContainer.value) return
+  isDragging.value = false
+  swiperContainer.value.style.cursor = 'grab'
+  swiperContainer.value.style.userSelect = ''
+}
+
+const handleMouseUp = () => {
+  if (!swiperContainer.value) return
+  isDragging.value = false
+  swiperContainer.value.style.cursor = 'grab'
+  swiperContainer.value.style.userSelect = ''
+}
+
+const handleMouseMove = (e: MouseEvent) => {
+  if (!isDragging.value || !swiperContainer.value) return
+  e.preventDefault()
+  const x = e.pageX - swiperContainer.value.offsetLeft
+  const walk = (x - startX.value) * 2
+  swiperContainer.value.scrollLeft = scrollLeft.value - walk
+}
+
+// Touch handlers
+const handleTouchStart = (e: TouchEvent) => {
+  if (!swiperContainer.value) return
+  isDragging.value = true
+  startX.value = e.touches[0].pageX - swiperContainer.value.offsetLeft
+  scrollLeft.value = swiperContainer.value.scrollLeft
+}
+
+const handleTouchMove = (e: TouchEvent) => {
+  if (!isDragging.value || !swiperContainer.value) return
+  e.preventDefault()
+  const x = e.touches[0].pageX - swiperContainer.value.offsetLeft
+  const walk = (x - startX.value) * 2
+  swiperContainer.value.scrollLeft = scrollLeft.value - walk
+}
+
+const handleTouchEnd = () => {
+  isDragging.value = false
+}
+
+// Update active index based on scroll position
+const updateActiveIndex = () => {
+  if (!swiperContainer.value) return
+  const container = swiperContainer.value
+  const scrollLeft = container.scrollLeft
+  const containerWidth = container.clientWidth
+  const index = Math.round(scrollLeft / containerWidth)
+  activePreviewIndex.value = Math.min(index, props.project.previews.length - 1)
+}
+
+// Scroll to specific preview index
+const selectPreview = (index: number) => {
+  if (!swiperContainer.value) return
+  const container = swiperContainer.value
+  const containerWidth = container.clientWidth
+  container.scrollTo({
+    left: index * containerWidth,
+    behavior: 'smooth',
+  })
+  activePreviewIndex.value = index
+}
+
+// Handle scroll events to update active index
+let scrollTimeout: number | null = null
+const handleScroll = () => {
+  if (scrollTimeout) {
+    clearTimeout(scrollTimeout)
+  }
+  scrollTimeout = window.setTimeout(() => {
+    updateActiveIndex()
+  }, 100)
+}
+
+onMounted(() => {
+  if (swiperContainer.value) {
+    swiperContainer.value.addEventListener('mousemove', handleMouseMove)
+    swiperContainer.value.addEventListener('mouseup', handleMouseUp)
+    swiperContainer.value.addEventListener('mouseleave', handleMouseLeave)
+    swiperContainer.value.addEventListener('scroll', handleScroll)
+    // Use scrollend if available, otherwise rely on debounced scroll
+    if ('onscrollend' in swiperContainer.value) {
+      swiperContainer.value.addEventListener('scrollend', updateActiveIndex)
+    }
+  }
+})
+
+onUnmounted(() => {
+  if (scrollTimeout) {
+    clearTimeout(scrollTimeout)
+  }
+  if (swiperContainer.value) {
+    swiperContainer.value.removeEventListener('mousemove', handleMouseMove)
+    swiperContainer.value.removeEventListener('mouseup', handleMouseUp)
+    swiperContainer.value.removeEventListener('mouseleave', handleMouseLeave)
+    swiperContainer.value.removeEventListener('scroll', handleScroll)
+    if ('onscrollend' in swiperContainer.value) {
+      swiperContainer.value.removeEventListener('scrollend', updateActiveIndex)
+    }
+  }
 })
 </script>
 
@@ -165,11 +283,26 @@ const hasProblemSolution = computed(() => {
           <div
             v-if="project.previews.length > 0"
             class="relative"
-            role="tabpanel"
-            :aria-label="`Preview for ${project.title}`"
+            role="region"
+            :aria-label="`Preview gallery for ${project.title}`"
           >
-            <div class="transition-opacity duration-300">
-              <ProjectPreview :preview="project.previews[activePreviewIndex]" />
+            <div
+              ref="swiperContainer"
+              class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+              style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory;"
+              @mousedown="handleMouseDown"
+              @touchstart="handleTouchStart"
+              @touchmove="handleTouchMove"
+              @touchend="handleTouchEnd"
+            >
+              <div
+                v-for="(preview, index) in project.previews"
+                :key="preview.id"
+                class="flex-shrink-0 w-full snap-center"
+                style="scroll-snap-align: center;"
+              >
+                <ProjectPreview :preview="preview" />
+              </div>
             </div>
             <PreviewIndicators
               v-if="project.previews.length > 1"
