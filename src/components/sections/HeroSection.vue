@@ -15,51 +15,65 @@ const scrollToContact = () => {
 </script>
 
 <template>
-  <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden">    <!-- Grid Pattern Overlay -->
-    <!-- Animated Geometric Shapes -->
-    <div class="absolute inset-0 overflow-hidden">
-      <!-- Large rotating circle -->
-      <div class="absolute top-20 left-10 w-64 h-64 border border-[var(--primary)]/20 rounded-full animate-rotate"></div>
-      <div class="absolute bottom-20 right-10 w-96 h-96 border border-[var(--secondary)]/20 rounded-full animate-rotate" style="animation-duration: 25s; animation-direction: reverse;"></div>
+  <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden bg-[var(--bg)]">
+    <!-- Subtle grid pattern (code-like structure) -->
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(190, 174, 211, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(190, 174, 211, 0.1) 1px, transparent 1px); background-size: 40px 40px;"></div>
 
-      <!-- Floating geometric shapes -->
-      <div class="absolute top-1/4 right-1/4 w-32 h-32 border-2 border-[var(--primary)]/30 rotate-45 animate-drift"></div>
-      <div class="absolute bottom-1/3 left-1/4 w-24 h-24 border-2 border-[var(--secondary)]/30 rotate-12 animate-float-reverse" style="animation-delay: 2s;"></div>
-      <div class="absolute top-1/2 right-1/3 w-16 h-16 bg-[var(--primary)]/10 rounded-full animate-float" style="animation-delay: 1s;"></div>
-
-      <!-- Floating particles -->
-      <div class="absolute top-1/3 left-1/3 w-2 h-2 bg-[var(--primary)]/40 rounded-full animate-float" style="animation-delay: 0.5s;"></div>
-      <div class="absolute top-2/3 right-1/4 w-3 h-3 bg-[var(--secondary)]/40 rounded-full animate-float-reverse" style="animation-delay: 1.5s;"></div>
-      <div class="absolute bottom-1/4 left-1/2 w-2 h-2 bg-[var(--primary)]/40 rounded-full animate-float" style="animation-delay: 2.5s;"></div>
-      <div class="absolute top-1/5 right-1/5 w-2.5 h-2.5 bg-[var(--secondary)]/40 rounded-full animate-float-reverse" style="animation-delay: 3s;"></div>
+    <!-- Code-like lines flowing -->
+    <div class="absolute inset-0 overflow-hidden opacity-10">
+      <div class="absolute top-1/4 left-0 w-full h-px bg-[var(--primary)]/30 animate-code-flow" style="animation-delay: 0s;"></div>
+      <div class="absolute top-1/2 left-0 w-full h-px bg-[var(--primary)]/20 animate-code-flow" style="animation-delay: 2s; animation-duration: 10s;"></div>
+      <div class="absolute top-3/4 left-0 w-full h-px bg-[var(--primary)]/25 animate-code-flow" style="animation-delay: 4s; animation-duration: 12s;"></div>
     </div>
 
-    <!-- Radial gradient overlays -->
-    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 30%, rgba(190, 174, 211, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(54, 22, 103, 0.12) 0%, transparent 50%), radial-gradient(circle at 50% 50%, rgba(190, 174, 211, 0.08) 0%, transparent 70%);"></div>
-
-    <!-- SVG decorative elements -->
+    <!-- Network/data flow connections -->
     <svg
-      class="absolute inset-0 w-full h-full opacity-20"
+      class="absolute inset-0 w-full h-full opacity-15"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1200 800"
     >
       <defs>
-        <linearGradient id="grid-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:rgb(190, 174, 211);stop-opacity:0.3" />
-          <stop offset="50%" style="stop-color:rgb(54, 22, 103);stop-opacity:0.2" />
-          <stop offset="100%" style="stop-color:rgb(190, 174, 211);stop-opacity:0.3" />
+        <linearGradient id="connection-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:rgb(190, 174, 211);stop-opacity:0.4" />
+          <stop offset="100%" style="stop-color:rgb(54, 22, 103);stop-opacity:0.3" />
         </linearGradient>
       </defs>
-      <g fill="none" stroke="url(#grid-gradient)" stroke-width="1.5">
-        <path d="M0,200 Q300,100 600,200 T1200,200" class="animate-pulse-slow" />
-        <path d="M0,400 Q300,300 600,400 T1200,400" class="animate-pulse-slow" style="animation-delay: 1s;" />
-        <path d="M0,600 Q300,500 600,600 T1200,600" class="animate-pulse-slow" style="animation-delay: 2s;" />
-      </g>
-      <circle cx="200" cy="150" r="4" fill="rgb(190, 174, 211)" opacity="0.5" class="animate-float" />
-      <circle cx="800" cy="300" r="5" fill="rgb(54, 22, 103)" opacity="0.5" class="animate-float-reverse" style="animation-delay: 1s;" />
-      <circle cx="1000" cy="600" r="4" fill="rgb(190, 174, 211)" opacity="0.5" class="animate-float" style="animation-delay: 2s;" />
-      <circle cx="400" cy="500" r="3" fill="rgb(54, 22, 103)" opacity="0.5" class="animate-float-reverse" style="animation-delay: 1.5s;" />
+      <!-- Data flow paths -->
+      <path
+        d="M100,200 L300,150 L500,200 L700,180 L900,200"
+        fill="none"
+        stroke="url(#connection-gradient)"
+        stroke-width="1.5"
+        stroke-dasharray="5,5"
+        class="animate-network-connect"
+        style="animation-delay: 0s;"
+      />
+      <path
+        d="M150,400 L350,380 L550,400 L750,390 L950,400"
+        fill="none"
+        stroke="url(#connection-gradient)"
+        stroke-width="1.5"
+        stroke-dasharray="5,5"
+        class="animate-network-connect"
+        style="animation-delay: 1s;"
+      />
+      <path
+        d="M200,600 L400,580 L600,600 L800,590 L1000,600"
+        fill="none"
+        stroke="url(#connection-gradient)"
+        stroke-width="1.5"
+        stroke-dasharray="5,5"
+        class="animate-network-connect"
+        style="animation-delay: 2s;"
+      />
+      <!-- Connection nodes -->
+      <circle cx="300" cy="150" r="3" fill="rgb(190, 174, 211)" opacity="0.4" class="animate-data-pulse" />
+      <circle cx="550" cy="400" r="3" fill="rgb(190, 174, 211)" opacity="0.4" class="animate-data-pulse" style="animation-delay: 1s;" />
+      <circle cx="800" cy="590" r="3" fill="rgb(190, 174, 211)" opacity="0.4" class="animate-data-pulse" style="animation-delay: 2s;" />
     </svg>
+
+    <!-- Subtle radial gradients for depth -->
+    <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle at 20% 30%, rgba(190, 174, 211, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(54, 22, 103, 0.06) 0%, transparent 50%);"></div>
 
     <!-- Content -->
     <div class="container-custom text-center relative z-10 animate-fade-in-up">
@@ -69,9 +83,14 @@ const scrollToContact = () => {
         <div class="w-2 h-2 bg-[var(--primary)] rounded-full inline-block ml-2 animate-pulse-slow" style="animation-delay: 1s;"></div>
       </div>
 
-      <h1 class="text-5xl md:text-7xl font-bold mb-6 text-[var(--text)] relative">
-        <span class="relative z-10">Adeyinka</span>
-        <span class="absolute inset-0 blur-sm opacity-30 text-[var(--primary)]" style="transform: translate(2px, 2px);">Adeyinka</span>
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 text-[var(--text)] relative font-mono">
+        <span class="relative z-10 inline-block">
+          <span class="inline-block">Adeyinka</span>
+          <span class="inline-block w-0.5 h-[0.9em] bg-[var(--primary)] ml-1 align-middle animate-cursor-blink"></span>
+        </span>
+        <span class="absolute inset-0 blur-sm opacity-30 text-[var(--primary)] font-mono" style="transform: translate(2px, 2px);">
+          Adeyinka
+        </span>
       </h1>
 
       <div class="mb-8">
