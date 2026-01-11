@@ -175,8 +175,8 @@ onUnmounted(() => {
       class="w-full text-left focus:outline-none"
     >
       <div
-        class="flex items-center justify-between gap-4 py-4 transition-all duration-300"
-        :class="localExpanded ? 'border-b border-[var(--border)] pb-6' : ''"
+        class="flex items-center justify-between gap-4 py-4 px-4 -mx-4 rounded-lg transition-all duration-300 relative overflow-hidden"
+        :class="localExpanded ? 'border-b border-[var(--border)] pb-6' : 'hover:bg-[var(--bg-secondary)]/30 project-card-glow'"
       >
         <div class="flex-1 min-w-0">
           <div class="flex items-start justify-between gap-4 mb-2">
@@ -193,7 +193,7 @@ onUnmounted(() => {
                 <span class="text-xs font-medium text-[var(--text-muted)]">{{ project.company.name }}</span>
               </div>
               <svg
-                class="w-5 h-5 text-[var(--text-muted)] flex-shrink-0 transition-transform duration-300"
+                class="w-5 h-5 text-[var(--text-muted)] flex-shrink-0 transition-transform duration-300 arrow-glow"
                 :class="localExpanded ? 'rotate-180' : ''"
                 fill="none"
                 stroke="currentColor"
