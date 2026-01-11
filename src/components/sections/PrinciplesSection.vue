@@ -53,11 +53,11 @@ const principles = [
         <article
           v-for="(principle, index) in principles"
           :key="principle.title"
-          class="relative bg-[var(--bg)] border border-[var(--border)] rounded-lg p-8 hover:border-[var(--primary)]/50 hover:shadow-xl hover:shadow-[var(--primary)]/10 transition-all duration-300 group overflow-hidden"
+          class="relative border border-[var(--border)] rounded-lg p-8 hover:border-[var(--primary)]/50 hover:shadow-xl hover:shadow-[var(--primary)]/10 transition-all duration-300 group overflow-hidden"
           :style="{ animationDelay: `${index * 100}ms` }"
         >
           <!-- Background gradient on hover -->
-          <div class="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <!-- <div class="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> -->
 
           <!-- Number badge -->
           <div class="absolute top-4 right-4 w-8 h-8 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center text-[var(--primary)] font-mono text-sm font-bold group-hover:scale-110 transition-transform duration-300">
