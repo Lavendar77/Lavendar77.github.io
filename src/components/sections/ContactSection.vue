@@ -10,13 +10,13 @@
       </p>
       <div class="flex gap-6 justify-center items-center flex-wrap">
         <a
-          href="mailto:contact@example.com"
+          href="mailto:folurinyinka@gmail.com"
           class="text-[var(--text)] hover:text-[var(--primary)] hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg)] rounded px-4 py-2"
         >
           Email
         </a>
         <a
-          href="https://github.com"
+          href="https://github.com/lavendar77"
           target="_blank"
           rel="noopener noreferrer"
           class="text-[var(--text)] hover:text-[var(--primary)] hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg)] rounded px-4 py-2"
@@ -24,7 +24,7 @@
           GitHub
         </a>
         <a
-          href="https://linkedin.com"
+          href="https://linkedin.com/in/adeyinka-adefolurin"
           target="_blank"
           rel="noopener noreferrer"
           class="text-[var(--text)] hover:text-[var(--primary)] hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg)] rounded px-4 py-2"
