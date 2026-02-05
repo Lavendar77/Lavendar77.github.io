@@ -38,17 +38,10 @@ const principles = [
 <template>
   <section id="principles" class="py-24 relative">
     <div class="container-custom">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-[var(--text)] mb-4">How I Work</h2>
-        <p class="text-lg text-[var(--text-muted)] mb-6 max-w-2xl mx-auto">
-          These principles guide how I design, build, and scale production systems.
-        </p>
-        <div class="flex items-center justify-center gap-2 mt-6">
-          <div class="h-px w-12 bg-[var(--primary)]/50"></div>
-          <div class="w-2 h-2 bg-[var(--primary)] rounded-full"></div>
-          <div class="h-px w-12 bg-[var(--primary)]/50"></div>
-        </div>
-      </div>
+      <h2 class="text-4xl font-bold text-[var(--text)] mb-4">How I work</h2>
+      <p class="text-lg text-[var(--text-muted)] mb-16 max-w-2xl">
+        These principles guide how I design, build, and scale production systems.
+      </p>
       <div class="grid md:grid-cols-2 gap-8">
         <article
           v-for="(principle, index) in principles"
