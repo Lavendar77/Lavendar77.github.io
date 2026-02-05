@@ -205,7 +205,7 @@ const projectsList: Project[] = [
           <g transform="translate(40,40)">
             <rect width="320" height="320" rx="12" fill="none" stroke="#b0b0b0" stroke-width="2"/>
             <text x="160" y="20" text-anchor="middle" font-size="14" fill="#b0b0b0">
-              BEFORE — Shared Hosting (cPanel)
+              BEFORE - Shared Hosting (cPanel)
             </text>
 
             <!-- Apps -->
@@ -233,7 +233,7 @@ const projectsList: Project[] = [
           <g transform="translate(540,40)">
             <rect width="320" height="320" rx="12" fill="none" stroke="#BEAED3" stroke-width="2"/>
             <text x="160" y="20" text-anchor="middle" font-size="14" fill="#BEAED3">
-              AFTER — Google Cloud Platform
+              AFTER - Google Cloud Platform
             </text>
 
             <!-- Compute Engine -->
@@ -325,6 +325,176 @@ const projectsList: Project[] = [
       },
     ],
     demo: 'https://gerocare.org',
+  },
+  {
+    id: 'hypetag-ecommerce-backend',
+    order: 3,
+    title: 'Luxury Ecommerce Backend: Multi-Currency Pricing + Reliable Checkout',
+    problemStatement:
+      'High-end fashion ecommerce needed a clean buying experience backed by reliable cart, order, and payment flows across currencies.',
+    role: 'Lead Backend Engineer',
+    context: 'Luxury fashion ecommerce platform built for a clean storefront UX',
+    date: '2023',
+    company: {
+      name: 'Hypetag',
+      logo: '/img/logos/hypetag.svg',
+    },
+    stack: [
+      'Laravel',
+      'MySQL',
+      'Laravel Scout',
+      'MySQL Full-text',
+      'DigitalOcean',
+      'Cloudinary',
+      'Paystack',
+    ],
+    problem:
+      'The platform needed product discovery and checkout to feel effortless, while handling two hard backend realities: (1) building relevant search under cost constraints, and (2) supporting multi-currency display pricing even when the payment gateway can only charge a limited set of currencies - without eroding user trust at checkout.',
+    solution:
+      'Implemented search with Laravel Scout backed by MySQL full-text indexes, tuning ranking for relevance while keeping infrastructure lean. Built a multi-currency pricing layer using a rates API, with an admin-controlled adjustment (add/subtract) applied on top of base rates for business control. At checkout, enforced clear payment behavior: when a user’s currency couldn’t be charged via the gateway, the system transparently defaulted payment to USD before the user proceeded; supported currencies charged normally. Integrated Cloudinary for media handling and deployed infrastructure on DigitalOcean.',
+    outcome:
+      'Shipped a production-ready ecommerce backend where discovery and checkout stay stable under real-world constraints: cost-aware search, transparent currency handling, and a consistent order/payment lifecycle that supports growth without compromising user clarity.',
+    previews: [
+      {
+        id: 'search-flow',
+        type: 'diagram',
+        label: 'Search + discovery flow (cost-aware)',
+        content: `<svg viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Search and discovery flow">
+          <text x="210" y="24" text-anchor="middle" font-size="14" fill="#BEAED3">Search + Discovery (Cost-Aware)</text>
+          <rect x="120" y="44" width="180" height="28" rx="6" fill="#361667" stroke="#BEAED3" stroke-width="1"/>
+          <text x="210" y="63" text-anchor="middle" font-size="11" fill="#BEAED3">Query → Scout</text>
+          <line x1="210" y1="72" x2="210" y2="88" stroke="#BEAED3" stroke-width="2"/>
+          <polygon points="210,88 206,82 214,82" fill="#BEAED3"/>
+          <rect x="130" y="92" width="160" height="28" rx="6" fill="#361667" stroke="#BEAED3" stroke-width="1"/>
+          <text x="210" y="111" text-anchor="middle" font-size="11" fill="#BEAED3">MySQL full-text ranking</text>
+          <line x1="210" y1="120" x2="210" y2="136" stroke="#BEAED3" stroke-width="2"/>
+          <polygon points="210,136 206,130 214,130" fill="#BEAED3"/>
+          <rect x="140" y="140" width="140" height="28" rx="6" fill="#361667" stroke="#BEAED3" stroke-width="1"/>
+          <text x="210" y="159" text-anchor="middle" font-size="11" fill="#BEAED3">Paginated results</text>
+        </svg>`,
+      },
+      {
+        id: 'currency-checkout',
+        type: 'diagram',
+        label: 'Multi-currency pricing + checkout transparency',
+        content: `<svg viewBox="0 0 440 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Multi-currency checkout flow">
+          <text x="220" y="22" text-anchor="middle" font-size="12" fill="#BEAED3">Multi-Currency + Checkout</text>
+          <rect x="80" y="38" width="280" height="24" rx="6" fill="#361667" stroke="#BEAED3" stroke-width="1"/>
+          <text x="220" y="55" text-anchor="middle" font-size="10" fill="#BEAED3">Display price → Rates API → Admin adjustment</text>
+          <line x1="220" y1="62" x2="220" y2="78" stroke="#BEAED3" stroke-width="2"/>
+          <polygon points="220,78 216,72 224,72" fill="#BEAED3"/>
+          <rect x="60" y="82" width="320" height="36" rx="6" fill="#361667" stroke="#BEAED3" stroke-width="1"/>
+          <text x="220" y="99" text-anchor="middle" font-size="10" fill="#BEAED3">Checkout shows charge currency;</text>
+          <text x="220" y="112" text-anchor="middle" font-size="10" fill="#BEAED3">USD fallback when required</text>
+          <line x1="220" y1="118" x2="220" y2="134" stroke="#BEAED3" stroke-width="2"/>
+          <polygon points="220,134 216,128 224,128" fill="#BEAED3"/>
+          <rect x="120" y="138" width="200" height="24" rx="6" fill="#361667" stroke="#BEAED3" stroke-width="1"/>
+          <text x="220" y="155" text-anchor="middle" font-size="10" fill="#BEAED3">Payment → Order state update</text>
+        </svg>`,
+      },
+      {
+        id: 'outcome-hypetag',
+        type: 'diagram',
+        label: 'Outcome',
+        content: `<svg viewBox="0 0 380 140" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="364" height="124" rx="14" fill="none" stroke="#BEAED3" stroke-width="2"/>
+          <text x="190" y="34" text-anchor="middle" font-size="14" fill="#BEAED3" font-weight="600">Outcome</text>
+          <g font-size="11" fill="#e5e5e5">
+            <text x="24" y="62">• Cost-aware search with DB-backed ranking</text>
+            <text x="24" y="82">• Transparent currency handling at checkout</text>
+            <text x="24" y="102">• Clear order/payment lifecycle, webhook-safe</text>
+          </g>
+        </svg>`,
+      },
+    ],
+    demo: 'https://hypetag.com',
+  },
+  {
+    id: 'connect-nigeria-platform-backend',
+    order: 4,
+    title: 'Scalable Directory Platform Backend: Secure Imports + High-Relevance Search',
+    problemStatement:
+      'A product revamp needed a scalable backend, safe high-volume onboarding, and fast discovery across a growing directory.',
+    role: 'Backend Engineer',
+    context: 'Platform connecting businesses with customers; included internal operations tooling',
+    date: '2022',
+    company: {
+      name: 'Connect Nigeria',
+      logo: '/img/logos/connectnigeria.svg',
+    },
+    stack: [
+      'Laravel',
+      'MySQL',
+      'Meilisearch',
+      'Laravel Scout',
+      'Algolia',
+      'AWS ElastiCache',
+      'AWS S3',
+      'GitLab CI/CD',
+    ],
+    problem:
+      'Two backend pain points shaped the rebuild. First was onboarding: field agents uploaded Excel files containing business and product data with inconsistent formatting - requiring heavy cleaning, verification, and deduplication, plus secure file handling. Second was discovery at scale: as listings grew, search needed to stay fast and produce results aligned with business goals (not just naive text matching).',
+    solution:
+      'Built a robust spreadsheet import pipeline with strict validation, normalization, deduplication safeguards, and secure upload handling to reduce risky/malformed inputs while staying adaptable to changing templates. Championed and implemented a dedicated Meilisearch server for indexing and retrieval via Laravel Scout, adding Meilisearch-specific ranking improvements to better reflect business priorities. Integrated Algolia as a secondary search surface. Supported the platform with Redis (ElastiCache), S3 for media/storage, and automated delivery via GitLab CI/CD.',
+    outcome:
+      'Unlocked faster, safer onboarding from real-world agent data while keeping duplicate and low-quality entries under control. Delivered fast discovery through dedicated search infrastructure and tuned ranking, helping the revamped product feel snappy as adoption increased and internal teams expanded operational usage (including events and payments workflows).',
+    previews: [
+      {
+        id: 'import-pipeline',
+        type: 'diagram',
+        label: 'Secure import pipeline (agents → platform)',
+        content: `<svg viewBox="0 0 440 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Import pipeline">
+          <text x="220" y="22" text-anchor="middle" font-size="12" fill="#BEAED3">Secure Import Pipeline</text>
+          <rect x="40" y="44" width="100" height="28" rx="6" fill="#2a2a2a" stroke="#b0b0b0" stroke-width="1"/>
+          <text x="90" y="62" text-anchor="middle" font-size="10" fill="#e5e5e5">Excel upload</text>
+          <line x1="140" y1="58" x2="170" y2="58" stroke="#BEAED3" stroke-width="2"/>
+          <polygon points="170,58 164,54 164,62" fill="#BEAED3"/>
+          <rect x="170" y="44" width="100" height="28" rx="6" fill="#361667" stroke="#BEAED3" stroke-width="1"/>
+          <text x="220" y="62" text-anchor="middle" font-size="10" fill="#BEAED3">Validation</text>
+          <line x1="270" y1="58" x2="300" y2="58" stroke="#BEAED3" stroke-width="2"/>
+          <polygon points="300,58 294,54 294,62" fill="#BEAED3"/>
+          <rect x="300" y="44" width="100" height="28" rx="6" fill="#361667" stroke="#BEAED3" stroke-width="1"/>
+          <text x="350" y="62" text-anchor="middle" font-size="10" fill="#BEAED3">Dedupe</text>
+          <line x1="350" y1="72" x2="350" y2="96" stroke="#BEAED3" stroke-width="2"/>
+          <polygon points="350,96 346,90 354,90" fill="#BEAED3"/>
+          <rect x="280" y="100" width="140" height="28" rx="6" fill="#361667" stroke="#BEAED3" stroke-width="1"/>
+          <text x="350" y="118" text-anchor="middle" font-size="10" fill="#BEAED3">Staged import</text>
+        </svg>`,
+      },
+      {
+        id: 'search-arch',
+        type: 'diagram',
+        label: 'Search architecture + ranking',
+        content: `<svg viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Search architecture">
+          <text x="210" y="22" text-anchor="middle" font-size="12" fill="#BEAED3">Search Architecture</text>
+          <rect x="140" y="38" width="140" height="26" rx="6" fill="#361667" stroke="#BEAED3" stroke-width="1"/>
+          <text x="210" y="56" text-anchor="middle" font-size="11" fill="#BEAED3">Laravel Scout</text>
+          <line x1="210" y1="64" x2="210" y2="82" stroke="#BEAED3" stroke-width="2"/>
+          <polygon points="210,82 206,76 214,76" fill="#BEAED3"/>
+          <rect x="100" y="86" width="220" height="26" rx="6" fill="#361667" stroke="#BEAED3" stroke-width="1"/>
+          <text x="210" y="104" text-anchor="middle" font-size="10" fill="#BEAED3">Meilisearch (dedicated) + custom ranking</text>
+          <line x1="210" y1="112" x2="210" y2="130" stroke="#BEAED3" stroke-width="2"/>
+          <polygon points="210,130 206,124 214,124" fill="#BEAED3"/>
+          <rect x="130" y="134" width="160" height="26" rx="6" fill="#361667" stroke="#BEAED3" stroke-width="1"/>
+          <text x="210" y="152" text-anchor="middle" font-size="10" fill="#BEAED3">Algolia (secondary surface)</text>
+        </svg>`,
+      },
+      {
+        id: 'outcome-connect',
+        type: 'diagram',
+        label: 'Outcome',
+        content: `<svg viewBox="0 0 380 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="364" height="104" rx="14" fill="none" stroke="#BEAED3" stroke-width="2"/>
+          <text x="190" y="34" text-anchor="middle" font-size="14" fill="#BEAED3" font-weight="600">Outcome</text>
+          <g font-size="11" fill="#e5e5e5">
+            <text x="24" y="58">• Safer onboarding from messy agent data</text>
+            <text x="24" y="78">• Fast discovery via dedicated search + ranking</text>
+            <text x="24" y="98">• Internal ops (events, payments) supported</text>
+          </g>
+        </svg>`,
+      },
+    ],
+    demo: 'https://connectnigeria.com',
   },
 ]
 
