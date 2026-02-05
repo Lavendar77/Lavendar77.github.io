@@ -1,6 +1,6 @@
 {
-  "name": "lavendar77-portfolio",
-  "version": "1.0.0",
+  "name": "lavendar77",
+  "version": "3.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
