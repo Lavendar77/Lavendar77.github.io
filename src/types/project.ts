@@ -9,6 +9,7 @@ export interface ProjectPreview {
 
 export interface Project {
   id: string
+  order: number
   title: string
   problemStatement: string
   role: string
@@ -23,6 +24,6 @@ export interface Project {
   date: string // Format: "YYYY" or "YYYY-MM" or "YYYY-MM-DD"
   company: {
     name: string
-    logo?: string // Optional logo URL or path
+    logo?: string
   }
 }
