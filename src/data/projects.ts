@@ -21,7 +21,7 @@ const projectsList: Project[] = [
     solution:
       'Webhook decoupling: SNS endpoints now validate and enqueue jobs, returning immediately; all heavy processing runs asynchronously in queues. Campaign delivery refactored from single-subscriber execution to batched, multi-worker parallelism, with controlled batch delays to prevent overload. Introduced memory tracking and batch-level performance metrics for real-time monitoring.',
     outcome:
-      '46.6% faster campaign completion (523s → 279s) and 87.4% higher throughput (1.93 → 3.61 subscribers/sec), with 35.8% faster batch execution and lower per-subscriber processing cost. The refactored pipeline eliminates server crashes and introduces batch-level observability, enabling horizontal scaling through additional workers and larger batch sizes as resources increase.',
+      '46.6% faster campaign completion and 87.4% higher throughput, with 35.8% faster batch execution and lower per-subscriber processing cost. The refactored pipeline eliminates server crashes and introduces batch-level observability, enabling horizontal scaling through additional workers and larger batch sizes as resources increase.',
     previews: [
       {
         id: 'batch-flow',
@@ -343,7 +343,7 @@ const projectsList: Project[] = [
       'Laravel',
       'MySQL',
       'Laravel Scout',
-      'MySQL Full-text',
+      'Full-text Indexing',
       'DigitalOcean',
       'Cloudinary',
       'Paystack',

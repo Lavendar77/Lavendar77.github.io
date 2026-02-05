@@ -7,6 +7,7 @@ const techStack = {
     'AWS (S3, CloudFront, Lambda, SQS, SNS, ElastiCache, MediaConvert)',
     'DigitalOcean',
     'Google Cloud',
+    'Vercel',
     'Serverless Architecture',
     'Event-driven systems',
     'Kafka',

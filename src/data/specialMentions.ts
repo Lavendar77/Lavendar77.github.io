@@ -42,7 +42,7 @@ const specialMentionsList: SpecialMention[] = [
       'Shipped multiple pages, forms, and polished transitions.',
       'Delivered on a volunteer timeline with client sign-off.',
     ],
-    stack: [],
+    stack: ['Vue.js', 'Vercel'],
     demo: 'https://combinenetlogistics.com',
   },
 ]
