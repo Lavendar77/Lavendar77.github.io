@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import { projects } from '@/data/projects'
 import ProjectCard from '@/components/projects/ProjectCard.vue'
 
@@ -12,8 +12,20 @@ onMounted(() => {
   }
 })
 
-const handleProjectToggle = (projectId: string, isExpanded: boolean) => {
+// Wait for expand/collapse transition so layout is stable; then instant scroll (no scroll animation)
+const TRANSITION_MS = 300
+
+const handleProjectToggle = async (projectId: string, isExpanded: boolean) => {
   expandedProjectId.value = isExpanded ? projectId : null
+  if (isExpanded) {
+    await nextTick()
+    setTimeout(() => {
+      const el = document.querySelector(`[data-project-id="${projectId}"]`) as HTMLElement | null
+      if (el) {
+        el.scrollIntoView({ behavior: 'auto', block: 'start' })
+      }
+    }, TRANSITION_MS)
+  }
 }
 </script>
 
@@ -25,13 +37,13 @@ const handleProjectToggle = (projectId: string, isExpanded: boolean) => {
         A few projects that reflect how I think and build.
       </p>
       <div>
-        <ProjectCard
-          v-for="project in projects"
-          :key="project.id"
-          :project="project"
-          :is-expanded="expandedProjectId === project.id"
-          @toggle="handleProjectToggle"
-        />
+        <div v-for="project in projects" :key="project.id" :data-project-id="project.id">
+          <ProjectCard
+            :project="project"
+            :is-expanded="expandedProjectId === project.id"
+            @toggle="handleProjectToggle"
+          />
+        </div>
       </div>
     </div>
   </section>
