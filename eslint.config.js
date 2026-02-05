@@ -1,62 +1,27 @@
-import js from "@eslint/js"
-import pluginVue from 'eslint-plugin-vue'
+import js from '@eslint/js'
+import vue from 'eslint-plugin-vue'
+import typescript from '@vue/eslint-config-typescript'
+import prettierConfig from '@vue/eslint-config-prettier'
 
 export default [
-    {
-        ignores: [
-            "dist/**/*",
-            "node_modules/**/*",
-            "public/service-worker.js",
-        ],
+  js.configs.recommended,
+  ...typescript(),
+  ...(Array.isArray(prettierConfig) ? prettierConfig : [prettierConfig]),
+  // eslint-plugin-vue 10 flat config
+  ...vue.configs['flat/essential'],
+  {
+    files: ['**/*.vue'],
+    rules: {
+      'vue/multi-word-component-names': 'off',
     },
-    ...pluginVue.configs['flat/recommended'],
-    js.configs.recommended,
-    {
-        rules: {
-            semi: ["error", "never"],
-        },
-        languageOptions: {
-            ecmaVersion: "latest",
-            globals: {
-                // Browser globals
-                window: "readonly",
-                document: "readonly",
-                navigator: "readonly",
-                console: "readonly",
-                alert: "readonly",
-                // Service worker globals
-                self: "readonly",
-                caches: "readonly",
-                fetch: "readonly",
-                addEventListener: "readonly",
-                removeEventListener: "readonly",
-                dispatchEvent: "readonly",
-                postMessage: "readonly",
-                importScripts: "readonly",
-                skipWaiting: "readonly",
-                clients: "readonly",
-                claim: "readonly",
-                registration: "readonly",
-                updateViaCache: "readonly",
-                cache: "readonly",
-                match: "readonly",
-                add: "readonly",
-                put: "readonly",
-                delete: "readonly",
-                keys: "readonly",
-                open: "readonly",
-                addAll: "readonly",
-                deleteAll: "readonly",
-                matchAll: "readonly",
-                putAll: "readonly",
-            },
-        },
-        files: [
-            "**/*.js",
-            "**/*.jsx",
-            "**/*.vue",
-            "**/*.cjs",
-            "**/*.mjs",
-        ],
-    }
+  },
+  {
+    files: ['**/*.{js,mjs,cjs,ts}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+    },
+  },
+  {
+    ignores: ['node_modules/**', 'dist/**', '*.config.js', '.eslintrc.cjs'],
+  },
 ]
