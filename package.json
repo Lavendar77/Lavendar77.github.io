@@ -10,21 +10,21 @@
     "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss,md}\""
   },
   "dependencies": {
-    "vue": "^3.5.13",
+    "vue": "^3.5.27",
     "@vueuse/head": "^2.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.10.2",
-    "@vitejs/plugin-vue": "^5.2.1",
+    "@types/node": "^25.2.1",
+    "@vitejs/plugin-vue": "^6.0.4",
     "@vue/eslint-config-prettier": "^10.0.0",
     "@vue/eslint-config-typescript": "^14.1.1",
     "eslint": "^9.17.0",
-    "eslint-plugin-vue": "^9.32.0",
-    "prettier": "^3.4.2",
+    "eslint-plugin-vue": "^10.7.0",
+    "prettier": "^3.8.1",
     "tailwindcss": "^4.0.0",
     "@tailwindcss/vite": "^4.0.0",
     "typescript": "^5.7.2",
-    "vite": "^6.0.5",
-    "vue-tsc": "^2.1.30"
+    "vite": "^7.3.1",
+    "vue-tsc": "^3.2.4"
   }
 }
