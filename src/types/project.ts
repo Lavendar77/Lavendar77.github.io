@@ -27,3 +27,16 @@ export interface Project {
     logo?: string
   }
 }
+
+export interface SpecialMention {
+  id: string
+  order: number
+  name: string
+  role: string
+  summary: string
+  bullets: string[]
+  stack: string[]
+  demo?: string
+  /** If true, show a "No longer live" badge (e.g. company folded). */
+  noLongerLive?: boolean
+}

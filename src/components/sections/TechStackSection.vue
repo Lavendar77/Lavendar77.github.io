@@ -4,13 +4,29 @@ const techStack = {
   Frameworks: ['Laravel', 'Vue.js', 'Express'],
   Runtime: ['Node.js'],
   Architecture: [
-    'AWS',
-    'Serverless Architecture (Lambda, SQS, SNS)',
+    'AWS (S3, CloudFront, Lambda, SQS, SNS, ElastiCache, MediaConvert)',
+    'DigitalOcean',
+    'Google Cloud',
+    'Serverless Architecture',
     'Event-driven systems',
-    'Kafka (event streaming)',
+    'Kafka',
   ],
   Databases: ['MySQL', 'PostgreSQL', 'Redis'],
-  Tooling: ['Git', 'Docker', 'GitHub Actions', 'ESLint', 'Prettier', 'Pest', 'Vite'],
+  Search: ['Laravel Scout', 'Meilisearch', 'Algolia'],
+  'Integrations & Services': ['Cloudinary', 'Paystack', 'Stripe', 'Firebase', 'Video.js', 'Wix'],
+  Tooling: [
+    'Git',
+    'Docker',
+    'Nginx',
+    'GitHub Actions',
+    'GitLab CI/CD',
+    'Laravel Horizon',
+    'ESLint',
+    'Prettier',
+    'Pest',
+    'Vite',
+    'Cloudflare',
+  ],
 }
 </script>
 
