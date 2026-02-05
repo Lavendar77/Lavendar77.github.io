@@ -326,53 +326,6 @@ const projectsList: Project[] = [
     ],
     demo: 'https://gerocare.org',
   },
-  {
-    id: 'developer-portfolio',
-    order: 3,
-    title: 'Developer Portfolio Website',
-    problemStatement:
-      'Need a modern, performant portfolio to showcase work and attract opportunities',
-    role: 'Full Stack Developer',
-    context: 'Personal project',
-    date: '2024',
-    company: {
-      name: 'Personal',
-    },
-    stack: ['Vue.js', 'TypeScript', 'Vite', 'Tailwind CSS'],
-    problem:
-      "Traditional portfolio websites are often bloated, slow, and don't effectively communicate technical skills. Many developers struggle to create a portfolio that balances visual appeal with performance and accessibility.",
-    solution:
-      'Built a minimalist, typography-driven portfolio using Vue 3 Composition API and Tailwind CSS. Implemented a compact, expandable project layout with progressive disclosure. Optimized for performance with lazy loading, semantic HTML, and achieving 95+ Lighthouse scores. Designed with dark mode by default and full keyboard accessibility.',
-    outcome:
-      'Created a fast, accessible portfolio that effectively showcases projects and technical expertise. Achieved 100/100 Lighthouse performance score, full keyboard navigation support, and responsive design across all devices.',
-    previews: [
-      {
-        id: 'portfolio-metric',
-        type: 'metric',
-        label: 'Lighthouse Performance',
-        content: '100/100',
-      },
-      {
-        id: 'portfolio-diagram',
-        type: 'diagram',
-        label: 'Component architecture',
-        content: `<svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
-          <rect x="50" y="50" width="120" height="60" fill="#361667" rx="4"/>
-          <text x="110" y="85" text-anchor="middle" fill="#BEAED3" font-size="11">App.vue</text>
-          <rect x="230" y="50" width="120" height="60" fill="#361667" rx="4"/>
-          <text x="290" y="85" text-anchor="middle" fill="#BEAED3" font-size="11">Sections</text>
-          <rect x="50" y="150" width="120" height="60" fill="#361667" rx="4"/>
-          <text x="110" y="185" text-anchor="middle" fill="#BEAED3" font-size="11">Components</text>
-          <rect x="230" y="150" width="120" height="60" fill="#361667" rx="4"/>
-          <text x="290" y="185" text-anchor="middle" fill="#BEAED3" font-size="11">Utils</text>
-          <line x1="170" y1="80" x2="230" y2="80" stroke="#BEAED3" stroke-width="2"/>
-          <line x1="110" y1="110" x2="110" y2="150" stroke="#BEAED3" stroke-width="2"/>
-          <line x1="290" y1="110" x2="290" y2="150" stroke="#BEAED3" stroke-width="2"/>
-        </svg>`,
-      },
-    ],
-    demo: 'https://lavendar77.github.io',
-  },
 ]
 
 /** Sorted by order (lower = first). Change each project's order to reorder the list. */
