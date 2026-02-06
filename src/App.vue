@@ -13,9 +13,32 @@ import { calculateYearsOfExperience } from '@/utils/constants'
 const yearsOfExperience = calculateYearsOfExperience()
 const experienceText = `Software Engineer with ${yearsOfExperience}+ years of experience building reliable, scalable systems. Specialized in backend engineering, system design, and infrastructure.`
 
+const siteUrl = 'https://lavendar77.github.io'
+const ogImage = `${siteUrl}/android-chrome-512x512.png`
+
+// JSON-LD structured data for search engines
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: 'Adeyinka - Software Engineer',
+      url: siteUrl,
+      description: experienceText,
+    },
+    {
+      '@type': 'Person',
+      name: 'Adeyinka',
+      url: siteUrl,
+      jobTitle: 'Software Engineer',
+      description: experienceText,
+    },
+  ],
+}
+
 // SEO Metadata
 useHead({
-  title: 'Adeyinka - Software Engineer | Portfolio',
+  title: 'Adeyinka - Software Engineer',
   meta: [
     {
       name: 'description',
@@ -24,16 +47,24 @@ useHead({
     {
       name: 'keywords',
       content:
-        'software engineer, backend developer, system design, TypeScript, Node.js, microservices, infrastructure, portfolio',
+        'software engineer, backend developer, system design, microservices, infrastructure, portfolio',
     },
     {
       name: 'author',
       content: 'Adeyinka',
     },
+    {
+      name: 'theme-color',
+      content: '#0f0f12',
+    },
+    {
+      name: 'robots',
+      content: 'index, follow',
+    },
     // Open Graph
     {
       property: 'og:title',
-      content: 'Adeyinka - Software Engineer | Portfolio',
+      content: 'Adeyinka - Software Engineer',
     },
     {
       property: 'og:description',
@@ -45,11 +76,31 @@ useHead({
     },
     {
       property: 'og:url',
-      content: 'https://lavendar77.github.io',
+      content: `${siteUrl}/`,
+    },
+    {
+      property: 'og:site_name',
+      content: 'Adeyinka - Software Engineer',
     },
     {
       property: 'og:image',
-      content: 'https://lavendar77.github.io/android-chrome-512x512.png',
+      content: ogImage,
+    },
+    {
+      property: 'og:image:width',
+      content: '512',
+    },
+    {
+      property: 'og:image:height',
+      content: '512',
+    },
+    {
+      property: 'og:image:alt',
+      content: 'Adeyinka - Software Engineer',
+    },
+    {
+      property: 'og:locale',
+      content: 'en_US',
     },
     // Twitter Cards
     {
@@ -58,7 +109,7 @@ useHead({
     },
     {
       name: 'twitter:title',
-      content: 'Adeyinka - Software Engineer | Portfolio',
+      content: 'Adeyinka - Software Engineer',
     },
     {
       name: 'twitter:description',
@@ -66,10 +117,18 @@ useHead({
     },
     {
       name: 'twitter:image',
-      content: 'https://lavendar77.github.io/android-chrome-512x512.png',
+      content: ogImage,
+    },
+    {
+      name: 'twitter:image:alt',
+      content: 'Adeyinka - Software Engineer',
     },
   ],
   link: [
+    {
+      rel: 'canonical',
+      href: `${siteUrl}/`,
+    },
     {
       rel: 'icon',
       type: 'image/x-icon',
@@ -96,19 +155,11 @@ useHead({
       rel: 'manifest',
       href: '/site.webmanifest',
     },
-    // Preconnect for fonts
+  ],
+  script: [
     {
-      rel: 'preconnect',
-      href: 'https://fonts.googleapis.com',
-    },
-    {
-      rel: 'preconnect',
-      href: 'https://fonts.gstatic.com',
-      crossorigin: '',
-    },
-    {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap',
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(jsonLd),
     },
   ],
 })
