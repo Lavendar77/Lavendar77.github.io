@@ -1,0 +1,74 @@
+# Adeyinka - Senior Software Engineer
+
+> Senior Software Engineer specializing in backend systems, scalable cloud architectures, and dependable AI-native agent workflows. 10+ years of production experience building high-throughput services, queue pipelines, and distributed software.
+
+## Overview
+
+- Role: Senior Software Engineer (Backend, Cloud Architecture & AI Systems)
+- Location & Availability: Remote (Global) / Open to Relocation
+- Portfolio: https://lavendar77.github.io
+- GitHub: https://github.com/lavendar77
+- LinkedIn: https://linkedin.com/in/adeyinka-adefolurin
+- Email: folurinyinka@gmail.com
+- Resume: https://drive.google.com/file/d/17wjEZG9f9sC5u0ivzuQ3H3b0YIDNx29H/view?usp=sharing
+
+## Core Technical Competencies
+
+### Backend & Distributed Systems
+- Languages & Runtimes: PHP, TypeScript, JavaScript, Node.js, SQL
+- Frameworks & APIs: Laravel, Express, REST APIs, GraphQL
+- Distributed Architecture: Microservices, Event-Driven Architecture, Kafka, Laravel Horizon, Background Queue Pipelines
+
+### AI Systems & Agents
+- Agentic Architecture: AI Agents, Model Context Protocol (MCP), Agent Orchestration
+- LLM Integrations: OpenAI, Anthropic Claude, Google Gemini APIs
+- Engineering Practice: Context Engineering, Deterministic Boundaries, Tool Calling & Workflows, Reliability & Verification
+
+### Cloud & DevOps Infrastructure
+- Cloud Platforms: Amazon Web Services (AWS), Google Cloud Platform (GCP), DigitalOcean, Vercel
+- AWS Ecosystem: Lambda, S3, CloudFront, SQS, SNS, SES, CloudWatch, ElastiCache, MediaConvert
+- Infrastructure & Automation: Docker, Serverless Architecture, GitHub Actions, GitLab CI/CD, Nginx, Cloudflare
+
+### Data, Storage & Ecosystem
+- Databases: PostgreSQL, MySQL, Redis
+- Search & Retrieval: Meilisearch, Laravel Scout, Algolia, Full-text indexing
+- Platform Integrations: Payment Gateways (Stripe, Paystack, multi-currency checkout), Cloudinary, Media Streaming (Video.js)
+- Testing & Quality: Pest, PHPUnit, ESLint, Prettier, Git
+
+## Production Case Studies & Impact
+
+### 1. Campaign Processing & Delivery Pipeline Overhaul (Poptin)
+- Role: Senior Backend Engineer
+- Stack: Laravel, AWS SNS, AWS SES, CloudWatch, Redis, Horizon
+- Problem: High-volume email platform experiencing server crashes from synchronous webhook callbacks and sequential subscriber sending.
+- Solution: Decoupled SNS delivery webhooks asynchronously via Redis queues. Refactored delivery into parallel batched execution with real-time memory monitoring.
+- Impact: 46.6% faster campaign completion, 87.4% higher throughput, 35.8% faster batch execution, and zero production crashes under peak load.
+
+### 2. Healthcare Platform Cloud Migration (Gerocare)
+- Role: Lead Software Engineer
+- Stack: Laravel, Vue.js, Google Cloud Platform (Compute Engine, Cloud SQL, GCS), Nginx, GitHub Actions, Cloudflare
+- Problem: Critical telemedicine and doctor-visit workflows failing due to outages on legacy shared hosting.
+- Solution: Led full cloud migration to GCP with Cloud SQL and automated GitHub Actions CI/CD; executed via zero-downtime DNS cutover with rollback path.
+- Impact: 100% elimination of recurring downtime, ~40% faster application load times, zero data loss, and sustained production stability.
+
+### 3. Luxury Ecommerce Backend: Multi-Currency & Search (Hypetag)
+- Role: Lead Backend Engineer
+- Stack: Laravel, MySQL, Laravel Scout, DigitalOcean, Cloudinary, Paystack
+- Problem: Discovery and checkout needed under cost constraints with dynamic currency display vs charging rules.
+- Solution: Tuned MySQL full-text search with Laravel Scout; built dynamic multi-currency rates adjustment layer with clear fallback charging logic.
+- Impact: Cost-effective search relevance, transparent multi-currency transactions, and resilient order/payment lifecycles.
+
+### 4. Scalable Directory Backend: Safe Ingestion & High-Relevance Search (Connect Nigeria)
+- Role: Backend Engineer
+- Stack: Laravel, MySQL, Meilisearch, Laravel Scout, Algolia, AWS ElastiCache, AWS S3, GitLab CI/CD
+- Problem: Inconsistent field agent spreadsheet uploads causing corrupt data and slow discovery across large directories.
+- Solution: Built strict validation and deduplication import pipeline; deployed dedicated Meilisearch instance with custom business ranking rules.
+- Impact: Safe high-volume ingestion, instant search response times, and reliable operational tooling.
+
+## Engineering Principles
+
+1. System Design First: Scalability, maintainability, and reliability drive architectural decisions. Every component exists for an explicit purpose.
+2. Performance by Default: Performance is designed into database schema, query patterns, and API lifecycles from day one.
+3. Pragmatic Engineering: Ship measurable value without taking on unmanaged technical debt. Choose the right tool for the problem rather than following trends.
+4. Reliability & Observability: Resilient failure handling, observable telemetry, and verification boundaries built into both classical backends and probabilistic AI systems.
+5. Deterministic Boundaries: AI models are probabilistic, but the surrounding software must remain deterministic with strict contracts, constrained tool permissions, and explicit fallback paths.
