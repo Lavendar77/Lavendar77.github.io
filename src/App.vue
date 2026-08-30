@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head'
 import Footer from '@/components/layout/Footer.vue'
+import Navbar from '@/components/layout/Navbar.vue'
 import HeroSection from '@/components/sections/HeroSection.vue'
 import WorkSection from '@/components/sections/WorkSection.vue'
 import TechStackSection from '@/components/sections/TechStackSection.vue'
@@ -167,6 +168,7 @@ useHead({
   <div id="app" class="min-h-screen">
     <main>
       <HeroSection />
+      <Navbar />
       <WorkSection />
       <TechStackSection />
       <SpecialMentionsSection />

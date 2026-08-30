@@ -331,6 +331,16 @@
   }
 }
 
+@keyframes active-layer-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(190, 174, 211, 0);
+  }
+  50% {
+    box-shadow: 0 0 28px 4px rgba(190, 174, 211, 0.1);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .animate-float {
     animation: float 6s ease-in-out infinite;
@@ -383,6 +393,10 @@
 
   .animate-border-glow {
     animation: border-glow 2s ease-in-out infinite;
+  }
+
+  .animate-active-layer {
+    animation: active-layer-pulse 4s ease-in-out infinite;
   }
 
   .project-card-glow {
