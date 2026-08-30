@@ -61,7 +61,7 @@ const domains: TechDomain[] = [
       'Meilisearch',
       'Laravel Scout',
       'Algolia',
-      'Paystack & Stripe',
+      'Payment Gateways',
       'Cloudinary',
       'Pest / PHPUnit',
       'Git',
