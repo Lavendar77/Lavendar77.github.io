@@ -50,16 +50,17 @@ const principles = [
       <p class="text-lg text-[var(--text-muted)] mb-16 max-w-2xl">
         These principles guide how I design, build, and scale production systems.
       </p>
-      <div class="grid md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
         <article
           v-for="(principle, index) in principles"
           :key="principle.title"
           class="relative border border-[var(--border)] rounded-lg p-8 hover:border-[var(--primary)]/50 hover:shadow-xl hover:shadow-[var(--primary)]/10 transition-all duration-300 group overflow-hidden"
+          :class="[
+            index < 2 ? 'lg:col-span-3' : 'lg:col-span-2',
+            index === 4 ? 'md:col-span-2 lg:col-span-2' : 'md:col-span-1',
+          ]"
           :style="{ animationDelay: `${index * 100}ms` }"
         >
-          <!-- Background gradient on hover -->
-          <!-- <div class="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> -->
-
           <!-- Number badge -->
           <div
             class="absolute top-4 right-4 w-8 h-8 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center text-[var(--primary)] font-mono text-sm font-bold group-hover:scale-110 transition-transform duration-300"
