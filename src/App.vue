@@ -3,10 +3,9 @@ import { useHead } from '@vueuse/head'
 import Footer from '@/components/layout/Footer.vue'
 import HeroSection from '@/components/sections/HeroSection.vue'
 import WorkSection from '@/components/sections/WorkSection.vue'
+import TechStackSection from '@/components/sections/TechStackSection.vue'
 import SpecialMentionsSection from '@/components/sections/SpecialMentionsSection.vue'
 import PrinciplesSection from '@/components/sections/PrinciplesSection.vue'
-import TechStackSection from '@/components/sections/TechStackSection.vue'
-import ExperienceSection from '@/components/sections/ExperienceSection.vue'
 import ContactSection from '@/components/sections/ContactSection.vue'
 import { calculateYearsOfExperience } from '@/utils/constants'
 
@@ -169,10 +168,9 @@ useHead({
     <main>
       <HeroSection />
       <WorkSection />
+      <TechStackSection />
       <SpecialMentionsSection />
       <PrinciplesSection />
-      <TechStackSection />
-      <ExperienceSection />
       <ContactSection />
     </main>
     <Footer />

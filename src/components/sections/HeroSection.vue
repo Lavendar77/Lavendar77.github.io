@@ -1,13 +1,9 @@
 <script setup lang="ts">
+const resumeViewLink =
+  'https://drive.google.com/file/d/17wjEZG9f9sC5u0ivzuQ3H3b0YIDNx29H/view?usp=sharing'
+
 const scrollToWork = () => {
   const element = document.querySelector('#work')
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-}
-
-const scrollToContact = () => {
-  const element = document.querySelector('#contact')
   if (element) {
     element.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
@@ -129,15 +125,19 @@ const scrollToContact = () => {
     <div class="container-custom text-center relative z-10 animate-fade-in-up">
       <div class="inline-block mb-4">
         <div
-          class="w-2 h-2 bg-[var(--primary)] rounded-full inline-block mr-2 animate-pulse-slow"
-        ></div>
-        <span class="text-sm text-[var(--text-muted)] font-mono tracking-wider"
-          >AVAILABLE FOR WORK</span
+          class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)]/50"
         >
-        <div
-          class="w-2 h-2 bg-[var(--primary)] rounded-full inline-block ml-2 animate-pulse-slow"
-          style="animation-delay: 1s"
-        ></div>
+          <div
+            class="w-2 h-2 bg-[var(--primary)] rounded-full animate-pulse-slow flex-shrink-0"
+          ></div>
+          <span class="text-xs sm:text-sm text-[var(--text-muted)] font-mono tracking-wider"
+            >AVAILABLE FOR WORK · REMOTE / RELOCATION</span
+          >
+          <div
+            class="w-2 h-2 bg-[var(--primary)] rounded-full animate-pulse-slow flex-shrink-0"
+            style="animation-delay: 1s"
+          ></div>
+        </div>
       </div>
 
       <h1 class="text-5xl md:text-7xl font-bold mb-6 text-[var(--text)] relative font-mono">
@@ -178,19 +178,35 @@ const scrollToContact = () => {
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
         <button
           @click="scrollToWork"
-          class="px-8 py-3 bg-[var(--primary)] text-[var(--secondary)] rounded-lg hover:opacity-90 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg)] font-semibold shadow-lg shadow-[var(--primary)]/20 relative overflow-hidden group"
+          class="px-8 py-3 bg-[var(--primary)] text-[var(--secondary)] rounded-lg hover:opacity-90 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg)] font-semibold shadow-lg shadow-[var(--primary)]/20 relative overflow-hidden group cursor-pointer"
         >
           <span class="relative z-10">View my work</span>
           <span
             class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"
           ></span>
         </button>
-        <button
-          @click="scrollToContact"
-          class="px-8 py-3 border-2 border-[var(--primary)]/50 text-[var(--text)] rounded-lg hover:bg-[var(--primary)]/10 hover:border-[var(--primary)] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg)] font-semibold"
+        <a
+          :href="resumeViewLink"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-8 py-3 border-2 border-[var(--primary)]/50 text-[var(--text)] rounded-lg hover:bg-[var(--primary)]/10 hover:border-[var(--primary)] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg)] font-semibold inline-flex items-center justify-center gap-2"
         >
-          Get in touch
-        </button>
+          <span>Open Resume</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+            />
+          </svg>
+        </a>
       </div>
     </div>
   </section>
