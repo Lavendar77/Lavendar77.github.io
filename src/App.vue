@@ -11,8 +11,7 @@ import ContactSection from '@/components/sections/ContactSection.vue'
 import { calculateYearsOfExperience } from '@/utils/constants'
 
 const yearsOfExperience = calculateYearsOfExperience()
-const experienceText = `Software Engineer with ${yearsOfExperience}+ years of experience building reliable, scalable systems. Specialized in backend engineering, system design, and infrastructure.`
-
+const experienceText = `Senior software engineer with ${yearsOfExperience}+ years building reliable backend systems and distributed architectures. Exploring AI agents, MCP, and the software layer that makes AI dependable.`
 const siteUrl = 'https://lavendar77.github.io'
 const ogImage = `${siteUrl}/android-chrome-512x512.png`
 
@@ -22,7 +21,7 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'WebSite',
-      name: 'Adeyinka - Software Engineer',
+      name: 'Adeyinka - Senior Software Engineer',
       url: siteUrl,
       description: experienceText,
     },
@@ -30,7 +29,7 @@ const jsonLd = {
       '@type': 'Person',
       name: 'Adeyinka',
       url: siteUrl,
-      jobTitle: 'Software Engineer',
+      jobTitle: 'Senior Software Engineer',
       description: experienceText,
     },
   ],
@@ -38,7 +37,7 @@ const jsonLd = {
 
 // SEO Metadata
 useHead({
-  title: 'Adeyinka - Software Engineer',
+  title: 'Adeyinka - Senior Backend & AI Systems Engineer',
   meta: [
     {
       name: 'description',
@@ -47,7 +46,7 @@ useHead({
     {
       name: 'keywords',
       content:
-        'software engineer, backend developer, system design, microservices, infrastructure, portfolio',
+        'software engineer, backend developer, system design, microservices, infrastructure, AI agents, MCP, agent orchestration, AI systems, LLM integration, portfolio',
     },
     {
       name: 'author',
@@ -64,7 +63,7 @@ useHead({
     // Open Graph
     {
       property: 'og:title',
-      content: 'Adeyinka - Software Engineer',
+      content: 'Adeyinka - Backend & AI Systems Engineer',
     },
     {
       property: 'og:description',
@@ -109,7 +108,7 @@ useHead({
     },
     {
       name: 'twitter:title',
-      content: 'Adeyinka - Software Engineer',
+      content: 'Adeyinka - Backend & AI Systems Engineer',
     },
     {
       name: 'twitter:description',

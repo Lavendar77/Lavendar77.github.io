@@ -156,7 +156,12 @@ const scrollToContact = () => {
       </h1>
 
       <div class="mb-8">
-        <p class="text-2xl md:text-3xl text-[var(--text-muted)] mb-2">Software Engineer</p>
+        <p class="text-2xl md:text-3xl text-[var(--text-muted)] mb-2 font-medium">
+          Senior Software Engineer
+        </p>
+        <p class="text-sm font-mono text-[var(--primary)]/60 tracking-wider">
+          Backend · Cloud · AI Systems
+        </p>
         <div class="flex items-center justify-center gap-2 mt-4">
           <div class="h-px w-12 bg-[var(--primary)]/50"></div>
           <div class="w-2 h-2 bg-[var(--primary)] rounded-full"></div>
@@ -164,10 +169,10 @@ const scrollToContact = () => {
         </div>
       </div>
 
-      <p class="text-lg text-[var(--text-muted)] max-w-2xl mx-auto mb-12 leading-relaxed">
-        Building reliable, scalable systems that power production applications.
-        <br class="hidden md:block" />
-        Focused on performance, maintainability, and pragmatic engineering decisions.
+      <p class="text-lg text-[var(--text-muted)] max-w-3xl mx-auto mb-10 leading-relaxed">
+        Building reliable, scalable systems that power production applications. Focused on
+        performance, maintainability, and pragmatic engineering decisions. Increasingly exploring
+        how those principles make AI-native agents dependable in production.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">

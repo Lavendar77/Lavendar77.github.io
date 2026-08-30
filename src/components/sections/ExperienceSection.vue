@@ -15,10 +15,10 @@ const yearsOfExperience = calculateYearsOfExperience()
       <h2 class="text-4xl font-bold text-[var(--text)] mb-8">Experience</h2>
       <div class="max-w-3xl mb-12">
         <p class="text-lg text-[var(--text-muted)] leading-relaxed">
-          Over {{ yearsOfExperience }}+ years of experience building and scaling production systems
-          for distributed teams. I've worked on high-traffic applications, designed microservices
-          architectures, and optimized systems handling millions of requests daily. Focused on
-          backend engineering, system design, and infrastructure that powers reliable applications.
+          Over {{ yearsOfExperience }}+ years building and scaling production systems, from backend
+          infrastructure and cloud migrations to distributed architectures handling millions of
+          requests. Now exploring how those same engineering principles apply to AI-native software
+          and agent systems.
         </p>
       </div>
       <div class="flex flex-col sm:flex-row gap-4 justify-start">
