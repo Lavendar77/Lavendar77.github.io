@@ -1,59 +1,127 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, watch, onMounted, onUnmounted, nextTick } from 'vue'
 
 const resumeViewLink =
   'https://drive.google.com/file/d/17wjEZG9f9sC5u0ivzuQ3H3b0YIDNx29H/view?usp=sharing'
 
 const navItems = [
-  { name: 'Work', href: '#work' },
-  { name: 'Tech Stack', href: '#tech-stack' },
-  { name: 'Special Mentions', href: '#special-mentions' },
-  { name: 'Principles', href: '#principles' },
-  { name: 'Contact', href: '#contact' },
+  { id: 'work', name: 'Work', href: '#work' },
+  { id: 'tech-stack', name: 'Tech Stack', href: '#tech-stack' },
+  { id: 'special-mentions', name: 'Special Mentions', href: '#special-mentions' },
+  { id: 'principles', name: 'Principles', href: '#principles' },
+  { id: 'contact', name: 'Contact', href: '#contact' },
 ]
 
 const activeSection = ref<string>('work')
+const navContainerRef = ref<HTMLElement | null>(null)
+
+const scrollActiveNavIntoView = async (sectionId: string) => {
+  await nextTick()
+  if (!navContainerRef.value) return
+  const container = navContainerRef.value
+  const activeEl = container.querySelector(`[data-nav-id="${sectionId}"]`) as HTMLElement | null
+
+  if (activeEl) {
+    const containerRect = container.getBoundingClientRect()
+    const elRect = activeEl.getBoundingClientRect()
+
+    // Element's visual offset from the container's left edge + existing scrollLeft
+    const elRelativeLeft = elRect.left - containerRect.left + container.scrollLeft
+
+    // Center the element inside the visible container width
+    const targetScrollLeft = elRelativeLeft - container.clientWidth / 2 + activeEl.offsetWidth / 2
+
+    container.scrollTo({
+      left: Math.max(0, targetScrollLeft),
+      behavior: 'smooth',
+    })
+  }
+}
+
+watch(
+  activeSection,
+  newSection => {
+    scrollActiveNavIntoView(newSection)
+  },
+  { immediate: true }
+)
 
 const scrollToTop = (e: Event) => {
   e.preventDefault()
-  const hero = document.querySelector('#hero')
-  if (hero) {
-    hero.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
+  activeSection.value = 'work'
+  scrollActiveNavIntoView('work')
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  })
 }
 
 const scrollToSection = (e: Event, href: string) => {
   e.preventDefault()
-  const target = document.querySelector(href)
+  const target = document.querySelector(href) as HTMLElement | null
   if (target) {
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const sectionId = href.slice(1)
+    activeSection.value = sectionId
+    scrollActiveNavIntoView(sectionId)
+
+    const navbarHeight = 56
+    const targetTop = target.getBoundingClientRect().top + window.scrollY - navbarHeight
+    window.scrollTo({
+      top: targetTop,
+      behavior: 'smooth',
+    })
   }
 }
 
-let observer: IntersectionObserver | null = null
+let scrollRaf: number | null = null
+
+const updateActiveSection = () => {
+  if (scrollRaf) cancelAnimationFrame(scrollRaf)
+
+  scrollRaf = requestAnimationFrame(() => {
+    const navbarHeight = 56
+    const triggerOffset = 160 // Distance from top of viewport
+
+    // 1. Bottom of page check
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+      if (activeSection.value !== 'contact') {
+        activeSection.value = 'contact'
+      }
+      return
+    }
+
+    // 2. Check each section using getBoundingClientRect
+    let currentId = 'work'
+    for (const item of navItems) {
+      const el = document.querySelector(item.href) as HTMLElement | null
+      if (el) {
+        const rect = el.getBoundingClientRect()
+        if (rect.top <= triggerOffset && rect.bottom > navbarHeight) {
+          currentId = item.id
+        }
+      }
+    }
+
+    if (activeSection.value !== currentId) {
+      activeSection.value = currentId
+    }
+  })
+}
 
 onMounted(() => {
-  if (typeof IntersectionObserver === 'undefined') return
-
-  observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          activeSection.value = entry.target.id
-        }
-      })
-    },
-    { rootMargin: '-20% 0px -70% 0px' }
-  )
-
-  navItems.forEach(item => {
-    const el = document.querySelector(item.href)
-    if (el) observer?.observe(el)
+  window.addEventListener('scroll', updateActiveSection, { passive: true })
+  window.addEventListener('resize', () => scrollActiveNavIntoView(activeSection.value), {
+    passive: true,
   })
+
+  // Initial check on load
+  updateActiveSection()
+  scrollActiveNavIntoView(activeSection.value)
 })
 
 onUnmounted(() => {
-  observer?.disconnect()
+  window.removeEventListener('scroll', updateActiveSection)
+  if (scrollRaf) cancelAnimationFrame(scrollRaf)
 })
 </script>
 
@@ -81,16 +149,21 @@ onUnmounted(() => {
         </a>
       </div>
 
-      <!-- Nav Links -->
-      <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto scrollbar-hide py-2">
+      <!-- Nav Links Container with horizontal scroll focus -->
+      <div
+        ref="navContainerRef"
+        class="flex items-center gap-1 sm:gap-2 overflow-x-auto scrollbar-hide py-2 scroll-smooth flex-1 max-w-full justify-start sm:justify-center"
+        style="-webkit-overflow-scrolling: touch"
+      >
         <a
           v-for="item in navItems"
           :key="item.href"
           :href="item.href"
+          :data-nav-id="item.id"
           @click="scrollToSection($event, item.href)"
-          class="px-2.5 sm:px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-all whitespace-nowrap"
+          class="px-2.5 sm:px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-all whitespace-nowrap flex-shrink-0"
           :class="[
-            activeSection === item.href.slice(1)
+            activeSection === item.id
               ? 'text-[var(--primary)] bg-[var(--primary)]/10 font-semibold'
               : 'text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-secondary)]/50',
           ]"
@@ -100,12 +173,12 @@ onUnmounted(() => {
       </div>
 
       <!-- Right CTA: Resume Link -->
-      <div class="flex items-center pl-2 flex-shrink-0">
+      <div class="flex items-center pl-1 sm:pl-2 flex-shrink-0">
         <a
           :href="resumeViewLink"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono font-medium text-[var(--primary)] border border-[var(--primary)]/30 bg-[var(--primary)]/5 hover:bg-[var(--primary)]/15 transition-all"
+          class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-md text-xs font-mono font-medium text-[var(--primary)] border border-[var(--primary)]/30 bg-[var(--primary)]/5 hover:bg-[var(--primary)]/15 transition-all"
         >
           <span>Resume</span>
           <svg
