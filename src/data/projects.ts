@@ -2,8 +2,83 @@ import type { Project } from '@/types/project'
 
 const projectsList: Project[] = [
   {
-    id: 'poptin-campaign-pipeline',
+    id: 'poptin-mcp-integration',
     order: 1,
+    title: "Extending Poptin's Capabilities into the Agentic AI Ecosystem",
+    problemStatement:
+      "Architecting and leading the development of an MCP integration that connects AI assistants to Poptin's marketing infrastructure, enabling autonomous campaign creation and execution.",
+    role: 'Technical Lead · MCP Integration',
+    context:
+      'Architecting an AI-native interface connecting AI agents directly to application capabilities and internal services.',
+    date: '2026',
+    company: {
+      name: 'Poptin',
+      logo: '/img/logos/poptin.svg',
+    },
+    stack: [
+      'PHP',
+      'Laravel',
+      'Model Context Protocol (MCP)',
+      'AI Agents',
+      'LLM Integration',
+      'REST APIs',
+      'AWS S3',
+    ],
+    problem:
+      "Traditional API integrations provided access to analytics and predefined actionable workflows, but did not expose the full breadth of application's capabilities to AI agents. There was an opportunity to introduce a more capable, context-aware interface through which AI systems could interact with the platform and execute meaningful business operations.",
+    solution:
+      'Independently designed the architecture and led implementation of the MCP server, connecting AI clients directly to the application. Established a structured interface of resources and tools that exposes existing application capabilities alongside additional internal services, enabling AI agents to understand context, interact with business functionality and orchestrate multi-step workflows.',
+    outcome:
+      "Successfully launched Poptin's first MCP integration, introducing a new way for AI assistants to interact with the platform beyond conventional API-driven workflows. Enabled agent-driven access to marketing capabilities, including creative campaign development and execution, and published the integration to the official MCP Registry while submitting it to additional registries.",
+    previews: [
+      {
+        id: 'mcp-agentic-flow',
+        type: 'component',
+        label: 'Agentic Lifecycle: Campaign Orchestration',
+        description:
+          'Demonstrating what AI agents can accomplish: an end-to-end multi-step workflow where an AI assistant discovers verified domain context, initializes campaign parameters, designs creative content autonomously, and dispatches delivery.',
+        highlights: [
+          'Multi-step orchestration: Combines resource discovery, tool calls, and managed file uploads into one coherent agentic lifecycle.',
+          'Autonomous creative synthesis: The LLM designs email copy and responsive layout internally with zero MCP calls during generation.',
+          'Context discovery: Reads verified sending domains via poptin://domains before campaign initialization.',
+          'Deterministic execution: Schema-validated tools handle upload instructions, design commitment, and delivery scheduling.',
+        ],
+      },
+      {
+        id: 'mcp-beyond-api',
+        type: 'component',
+        label: 'Beyond API Exposure: Direct Application Integration',
+        description:
+          'Architectural expansion: Exposing existing application capabilities and internal services directly to AI agents rather than simply wrapping public REST APIs.',
+        highlights: [
+          'Not a REST wrapper: MCP interacts directly with internal application services, accessing domain logic not exposed via public APIs.',
+          'Parallel interaction layers: Public REST APIs remain dedicated to analytics/CRUD while MCP provides an AI-native interface.',
+          'Context-aware resources: Exposes structured resources alongside actionable tools for multi-step agent reasoning.',
+          'Single application core: Unifies existing business logic, validation, and delivery pipelines across interfaces.',
+        ],
+      },
+      {
+        id: 'mcp-client-interoperability',
+        type: 'component',
+        label: 'Engineering for AI Client Interoperability',
+        description:
+          'Practical engineering challenges: Solving real-world AI client constraints, sandboxing boundaries, and upload transport interoperability across diverse agent hosts.',
+        highlights: [
+          'Client sandbox realities: Adapted upload architecture from direct AWS S3 to an MCP-hosted proxy to eliminate client allowlist blocks.',
+          'Universal compatibility: Guarantees out-of-the-box execution across Claude Desktop, Cursor, and custom agent runtimes.',
+          'Strict schema enforcement: Structured JSON-RPC schemas prevent agent hallucinations and format drift.',
+          'Building for realities: Bridges client security boundaries rather than assuming unconstrained network access.',
+        ],
+      },
+    ],
+    demo: 'https://www.poptin.com/mcp',
+    demoLabel: 'Visit Poptin MCP Product Page →',
+    repo: 'https://github.com/Poptin-LTD/Poptin-MCP',
+    repoLabel: 'View GitHub Repository →',
+  },
+  {
+    id: 'poptin-campaign-pipeline',
+    order: 2,
     title: 'Campaign Processing & Delivery Pipeline Overhaul',
     problemStatement:
       'High-volume email campaign platform experiencing server crashes and slow delivery under load',
@@ -176,7 +251,7 @@ const projectsList: Project[] = [
   },
   {
     id: 'gerocare-cloud-migration',
-    order: 2,
+    order: 3,
     title: 'Stabilizing a Healthcare Platform Through Cloud Migration',
     problemStatement:
       'Recurring downtime from shared hosting threatening critical healthcare workflows',
@@ -328,7 +403,7 @@ const projectsList: Project[] = [
   },
   {
     id: 'hypetag-ecommerce-backend',
-    order: 3,
+    order: 4,
     title: 'Luxury Ecommerce Backend: Multi-Currency Pricing + Reliable Checkout',
     problemStatement:
       'High-end fashion ecommerce needed a clean buying experience backed by reliable cart, order, and payment flows across currencies.',
@@ -411,7 +486,7 @@ const projectsList: Project[] = [
   },
   {
     id: 'connect-nigeria-platform-backend',
-    order: 4,
+    order: 5,
     title: 'Scalable Directory Platform Backend: Secure Imports + High-Relevance Search',
     problemStatement:
       'A product revamp needed a scalable backend, safe high-volume onboarding, and fast discovery across a growing directory.',

@@ -1,10 +1,12 @@
-export type PreviewType = 'diagram' | 'code' | 'metric' | 'image'
+export type PreviewType = 'diagram' | 'code' | 'metric' | 'image' | 'component'
 
 export interface ProjectPreview {
   id: string
   type: PreviewType
   label: string
-  content: string
+  content?: string
+  description?: string
+  highlights?: string[]
 }
 
 export interface Project {
@@ -20,7 +22,9 @@ export interface Project {
   outcome: string
   previews: ProjectPreview[]
   repo?: string
+  repoLabel?: string
   demo?: string
+  demoLabel?: string
   date: string // Format: "YYYY" or "YYYY-MM" or "YYYY-MM-DD"
   company: {
     name: string

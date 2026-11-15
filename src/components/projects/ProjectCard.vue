@@ -249,45 +249,53 @@ onUnmounted(() => {
           <div v-if="hasProblemSolution" class="space-y-4">
             <div>
               <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">Problem</h4>
-              <p class="text-[var(--text)]">{{ project.problem }}</p>
+              <p class="text-[var(--text)] whitespace-pre-line leading-relaxed">
+                {{ project.problem }}
+              </p>
             </div>
 
             <div>
               <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">
                 Solution
               </h4>
-              <p class="text-[var(--text)]">{{ project.solution }}</p>
+              <p class="text-[var(--text)] whitespace-pre-line leading-relaxed">
+                {{ project.solution }}
+              </p>
             </div>
           </div>
 
           <div v-else>
             <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">Summary</h4>
-            <p class="text-[var(--text)]">{{ project.outcome }}</p>
+            <p class="text-[var(--text)] whitespace-pre-line leading-relaxed">
+              {{ project.outcome }}
+            </p>
           </div>
 
           <div>
             <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">Outcome</h4>
-            <p class="text-[var(--text)]">{{ project.outcome }}</p>
+            <p class="text-[var(--text)] whitespace-pre-line leading-relaxed">
+              {{ project.outcome }}
+            </p>
           </div>
 
-          <div v-if="project.repo || project.demo" class="flex gap-4 pt-2">
-            <a
-              v-if="project.repo"
-              :href="project.repo"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sm text-[var(--primary)] hover:text-[var(--primary)]/80 hover:underline transition-colors"
-            >
-              View Repository →
-            </a>
+          <div v-if="project.demo || project.repo" class="flex flex-wrap items-center gap-4 pt-2">
             <a
               v-if="project.demo"
               :href="project.demo"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-sm text-[var(--primary)] hover:text-[var(--primary)]/80 hover:underline transition-colors"
+              class="text-sm font-medium text-[var(--primary)] hover:text-[var(--primary)]/80 hover:underline transition-colors inline-flex items-center gap-1.5"
             >
-              Visit Live Site →
+              {{ project.demoLabel || 'Visit Live Site →' }}
+            </a>
+            <a
+              v-if="project.repo"
+              :href="project.repo"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-[var(--text-muted)] hover:text-[var(--primary)] hover:underline transition-colors inline-flex items-center gap-1.5"
+            >
+              {{ project.repoLabel || 'View Repository →' }}
             </a>
           </div>
         </div>
