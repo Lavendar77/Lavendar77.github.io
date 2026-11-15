@@ -3,6 +3,7 @@ import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import type { Project } from '@/types/project'
 import ProjectPreview from './ProjectPreview.vue'
 import PreviewIndicators from './PreviewIndicators.vue'
+import PreviewModal from './PreviewModal.vue'
 
 interface Props {
   project: Project
@@ -21,8 +22,11 @@ const localExpanded = ref(props.isExpanded)
 const swiperContainer = ref<HTMLElement | null>(null)
 const activePreviewIndex = ref(0)
 const isDragging = ref(false)
+const hasDragged = ref(false)
 const startX = ref(0)
 const scrollLeft = ref(0)
+const isModalOpen = ref(false)
+const activeModalIndex = ref(0)
 
 watch(
   () => props.isExpanded,
@@ -57,6 +61,7 @@ const hasProblemSolution = computed(() => {
 const handleMouseDown = (e: MouseEvent) => {
   if (!swiperContainer.value) return
   isDragging.value = true
+  hasDragged.value = false
   startX.value = e.pageX - swiperContainer.value.offsetLeft
   scrollLeft.value = swiperContainer.value.scrollLeft
   swiperContainer.value.style.cursor = 'grabbing'
@@ -79,8 +84,11 @@ const handleMouseUp = () => {
 
 const handleMouseMove = (e: MouseEvent) => {
   if (!isDragging.value || !swiperContainer.value) return
-  e.preventDefault()
   const x = e.pageX - swiperContainer.value.offsetLeft
+  if (Math.abs(x - startX.value) > 6) {
+    hasDragged.value = true
+    e.preventDefault()
+  }
   const walk = (x - startX.value) * 2
   swiperContainer.value.scrollLeft = scrollLeft.value - walk
 }
@@ -89,20 +97,37 @@ const handleMouseMove = (e: MouseEvent) => {
 const handleTouchStart = (e: TouchEvent) => {
   if (!swiperContainer.value) return
   isDragging.value = true
+  hasDragged.value = false
   startX.value = e.touches[0].pageX - swiperContainer.value.offsetLeft
   scrollLeft.value = swiperContainer.value.scrollLeft
 }
 
 const handleTouchMove = (e: TouchEvent) => {
   if (!isDragging.value || !swiperContainer.value) return
-  e.preventDefault()
   const x = e.touches[0].pageX - swiperContainer.value.offsetLeft
+  if (Math.abs(x - startX.value) > 6) {
+    hasDragged.value = true
+    e.preventDefault()
+  }
   const walk = (x - startX.value) * 2
   swiperContainer.value.scrollLeft = scrollLeft.value - walk
 }
 
 const handleTouchEnd = () => {
   isDragging.value = false
+}
+
+const openPreviewModal = (index: number, e?: MouseEvent) => {
+  if (hasDragged.value) return
+  if (e) {
+    const target = e.target as HTMLElement
+    // If clicking an internal interactive button (except the expand trigger), let that button handle it
+    if (target.closest('button:not(.expand-preview-btn)')) {
+      return
+    }
+  }
+  activeModalIndex.value = index
+  isModalOpen.value = true
 }
 
 // Update active index based on scroll position
@@ -321,23 +346,64 @@ onUnmounted(() => {
               @touchend="handleTouchEnd"
             >
               <div
-                v-for="preview in project.previews"
+                v-for="(preview, index) in project.previews"
                 :key="preview.id"
-                class="flex-shrink-0 w-full snap-center"
+                class="flex-shrink-0 w-full snap-center relative group/preview"
                 style="scroll-snap-align: center"
+                @click="openPreviewModal(index, $event)"
               >
-                <ProjectPreview :preview="preview" />
+                <!-- Floating Expand Button -->
+                <button
+                  type="button"
+                  @click.stop="openPreviewModal(index)"
+                  class="expand-preview-btn absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#16161ad8] hover:bg-[var(--secondary)] border border-[var(--border)] hover:border-[var(--primary)] text-[11px] font-mono text-[var(--text-muted)] hover:text-[var(--primary)] shadow-md transition-all duration-200 cursor-pointer backdrop-blur-xs"
+                  title="Click to open big screen overlay"
+                >
+                  <svg
+                    class="w-3.5 h-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"
+                    />
+                  </svg>
+                  <span>Expand</span>
+                </button>
+
+                <div class="cursor-pointer">
+                  <ProjectPreview :preview="preview" />
+                </div>
               </div>
             </div>
-            <PreviewIndicators
-              v-if="project.previews.length > 1"
-              :count="project.previews.length"
-              :active-index="activePreviewIndex"
-              @select="selectPreview"
-            />
+            <div class="flex items-center justify-between mt-2 px-1">
+              <p class="text-[11px] font-mono text-[var(--text-muted)]/70">
+                Click preview to inspect details
+              </p>
+              <PreviewIndicators
+                v-if="project.previews.length > 1"
+                :count="project.previews.length"
+                :active-index="activePreviewIndex"
+                @select="selectPreview"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Big Screen Overlay Modal -->
+    <PreviewModal
+      :is-open="isModalOpen"
+      :project="project"
+      :current-index="activeModalIndex"
+      @close="isModalOpen = false"
+      @select-index="activeModalIndex = $event"
+    />
   </article>
 </template>
