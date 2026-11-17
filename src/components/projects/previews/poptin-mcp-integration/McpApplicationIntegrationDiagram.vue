@@ -1,28 +1,14 @@
 <script setup lang="ts">
-// Illustration 2: Beyond API Exposure - Direct Laravel Application Integration
+import DiagramFrame from '../ui/DiagramFrame.vue'
 </script>
 
 <template>
-  <div class="w-full flex flex-col gap-2.5 font-sans select-none">
-    <!-- Header Summary Bar -->
-    <div class="flex items-center justify-between pb-2 border-b border-[var(--border)]">
-      <div>
-        <span
-          class="text-xs font-mono font-bold text-[var(--primary)] uppercase tracking-wider block"
-        >
-          Beyond API Exposure: Direct Application Integration
-        </span>
-        <span class="text-[11px] text-[var(--text-muted)]">
-          One application · Multiple interaction interfaces · Expanded capabilities for AI agents
-        </span>
-      </div>
-      <span
-        class="hidden sm:inline-flex px-2 py-0.5 text-[10px] font-mono rounded bg-[var(--secondary)] text-[var(--primary)] border border-[var(--primary)]/30"
-      >
-        Architecture
-      </span>
-    </div>
-
+  <DiagramFrame
+    kicker="Beyond API exposure"
+    badge="Architecture"
+    title="One application, with a direct path for agents alongside the public API."
+    :panel="false"
+  >
     <!-- SVG Architecture Diagram -->
     <div
       class="relative w-full rounded-lg overflow-hidden border border-[var(--border)] bg-[#141416]"
@@ -30,7 +16,7 @@
       <svg
         viewBox="0 0 740 500"
         xmlns="http://www.w3.org/2000/svg"
-        class="w-full h-auto block select-none"
+        class="w-full max-w-full h-auto block select-none"
         role="img"
         aria-label="Beyond API Exposure: Direct Laravel Application Integration Diagram"
       >
@@ -794,7 +780,7 @@
         </p>
       </div>
     </div>
-  </div>
+  </DiagramFrame>
 </template>
 
 <style scoped>

@@ -4,6 +4,8 @@ import type { ProjectPreview } from '@/types/project'
 import McpArchitectureDiagram from './previews/poptin-mcp-integration/McpArchitectureDiagram.vue'
 import McpApplicationIntegrationDiagram from './previews/poptin-mcp-integration/McpApplicationIntegrationDiagram.vue'
 import McpClientInteroperabilityDiagram from './previews/poptin-mcp-integration/McpClientInteroperabilityDiagram.vue'
+import CaseStudyDiagram from './previews/CaseStudyDiagram.vue'
+import { caseStudyDiagrams } from '@/data/caseStudyDiagrams'
 
 interface Props {
   preview: ProjectPreview
@@ -22,11 +24,12 @@ const isSvg = computed(
 const isCode = computed(() => props.preview.type === 'code')
 const isMetric = computed(() => props.preview.type === 'metric')
 const isComponent = computed(() => props.preview.type === 'component')
+const isCaseStudy = computed(() => props.preview.id in caseStudyDiagrams)
 </script>
 
 <template>
   <div
-    class="rounded-lg border flex items-center justify-center transition-colors duration-300 overflow-hidden"
+    class="rounded-lg border flex flex-col items-center justify-center transition-colors duration-300 overflow-hidden w-full min-w-0 max-w-full"
     :class="[
       fullscreen
         ? 'p-4 sm:p-6 min-h-[400px] w-full bg-[var(--bg)]/95 border-[var(--border)] shadow-inner'
@@ -35,7 +38,10 @@ const isComponent = computed(() => props.preview.type === 'component')
           : 'p-4 sm:p-6 min-h-[300px] bg-[var(--bg-secondary)] border-[var(--border)] hover:border-[var(--primary)]/30',
     ]"
   >
-    <div v-if="isComponent" class="w-full">
+    <div v-if="isCaseStudy" class="w-full min-w-0 max-w-full">
+      <CaseStudyDiagram :diagram-id="preview.id" />
+    </div>
+    <div v-else-if="isComponent" class="w-full min-w-0 max-w-full">
       <McpArchitectureDiagram v-if="preview.id === 'mcp-agentic-flow'" />
       <McpApplicationIntegrationDiagram
         v-else-if="preview.id === 'mcp-beyond-api' || preview.id === 'mcp-campaign-sequence'"
@@ -49,7 +55,7 @@ const isComponent = computed(() => props.preview.type === 'component')
     <div
       v-else-if="isSvg"
       v-html="preview.content"
-      class="w-full flex items-center justify-center"
+      class="w-full min-w-0 max-w-full [&_svg]:block [&_svg]:h-auto [&_svg]:w-full [&_svg]:max-w-full"
       :class="fullscreen ? 'max-w-4xl mx-auto' : ''"
     />
     <div v-else-if="isCode" class="w-full">

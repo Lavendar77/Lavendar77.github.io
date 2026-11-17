@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import DiagramFrame from '../ui/DiagramFrame.vue'
 
 const currentStep = ref(0)
 const isAutoPlaying = ref(true)
@@ -113,49 +114,50 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="w-full flex flex-col gap-3 font-sans select-none">
-    <!-- Interactive Step Navigation Bar -->
-    <div
-      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 pb-2 border-b border-[var(--border)]"
-    >
-      <div class="flex items-center gap-1.5 flex-wrap">
-        <span
-          class="text-xs font-mono font-medium text-[var(--primary)] uppercase tracking-wider mr-1"
-        >
-          Agentic Lifecycle:
-        </span>
-        <button
-          v-for="(step, idx) in steps"
-          :key="step.number"
-          @click="selectStep(idx)"
-          type="button"
-          class="px-2 py-0.5 rounded text-[11px] font-mono transition-all duration-200 cursor-pointer border"
-          :class="
-            currentStep === idx
-              ? 'bg-[var(--primary)] text-[var(--color-bg)] border-[var(--primary)] font-semibold shadow-sm'
-              : 'bg-[var(--bg)]/70 text-[var(--text-muted)] border-[var(--border)] hover:border-[var(--primary)]/60 hover:text-[var(--text)]'
-          "
-          :title="step.description"
-        >
-          {{ step.number }}. {{ step.label }}
-        </button>
-      </div>
+  <DiagramFrame
+    kicker="Agentic lifecycle"
+    badge="Walkthrough"
+    title="Discover context, design the email, then commit and send it."
+    :panel="false"
+  >
+    <template #toolbar>
+      <div
+        class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 min-w-0"
+      >
+        <div class="flex items-center gap-1.5 flex-wrap min-w-0">
+          <button
+            v-for="(step, idx) in steps"
+            :key="step.number"
+            @click="selectStep(idx)"
+            type="button"
+            class="px-2 py-0.5 rounded text-[11px] font-mono transition-all duration-200 cursor-pointer border"
+            :class="
+              currentStep === idx
+                ? 'bg-[var(--primary)] text-[var(--color-bg)] border-[var(--primary)] font-semibold shadow-sm'
+                : 'bg-[var(--bg)]/70 text-[var(--text-muted)] border-[var(--border)] hover:border-[var(--primary)]/60 hover:text-[var(--text)]'
+            "
+            :title="step.description"
+          >
+            {{ step.number }}. {{ step.label }}
+          </button>
+        </div>
 
-      <div class="flex items-center gap-2 self-end sm:self-auto flex-shrink-0">
-        <button
-          @click="togglePlay"
-          type="button"
-          class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-[var(--border)] text-[11px] font-mono text-[var(--text-muted)] hover:text-[var(--text)] hover:border-[var(--primary)]/50 transition-colors cursor-pointer"
-          :title="isAutoPlaying ? 'Pause animated walkthrough' : 'Resume auto-play'"
-        >
-          <span
-            class="w-1.5 h-1.5 rounded-full"
-            :class="isAutoPlaying ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'"
-          />
-          {{ isAutoPlaying ? 'Pause' : 'Auto-Play' }}
-        </button>
+        <div class="flex items-center gap-2 self-end sm:self-auto flex-shrink-0">
+          <button
+            @click="togglePlay"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-[var(--border)] text-[11px] font-mono text-[var(--text-muted)] hover:text-[var(--text)] hover:border-[var(--primary)]/50 transition-colors cursor-pointer"
+            :title="isAutoPlaying ? 'Pause animated walkthrough' : 'Resume auto-play'"
+          >
+            <span
+              class="w-1.5 h-1.5 rounded-full"
+              :class="isAutoPlaying ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'"
+            />
+            {{ isAutoPlaying ? 'Pause' : 'Auto-Play' }}
+          </button>
+        </div>
       </div>
-    </div>
+    </template>
 
     <!-- Active Step Explanatory Banner -->
     <div
@@ -211,7 +213,7 @@ onUnmounted(() => {
       <svg
         viewBox="0 0 740 500"
         xmlns="http://www.w3.org/2000/svg"
-        class="w-full h-auto block select-none"
+        class="w-full max-w-full h-auto block select-none"
         role="img"
         aria-label="Poptin MCP Integration Architecture and Agentic Workflow Diagram"
       >
@@ -1314,7 +1316,7 @@ onUnmounted(() => {
         <span>Official MCP Registry</span>
       </div>
     </div>
-  </div>
+  </DiagramFrame>
 </template>
 
 <style scoped>

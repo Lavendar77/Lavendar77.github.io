@@ -1,28 +1,14 @@
 <script setup lang="ts">
-// Illustration 3: Engineering for AI Client Interoperability
+import DiagramFrame from '../ui/DiagramFrame.vue'
 </script>
 
 <template>
-  <div class="w-full flex flex-col gap-2.5 font-sans select-none">
-    <!-- Header Summary Bar -->
-    <div class="flex items-center justify-between pb-2 border-b border-[var(--border)]">
-      <div>
-        <span
-          class="text-xs font-mono font-bold text-[var(--primary)] uppercase tracking-wider block"
-        >
-          Engineering for AI Client Interoperability
-        </span>
-        <span class="text-[11px] text-[var(--text-muted)]">
-          Building for the realities of AI clients, not just protocol compliance
-        </span>
-      </div>
-      <span
-        class="hidden sm:inline-flex px-2 py-0.5 text-[10px] font-mono rounded bg-indigo-500/20 text-indigo-300 border border-indigo-400/30"
-      >
-        Client Interoperability
-      </span>
-    </div>
-
+  <DiagramFrame
+    kicker="Client interoperability"
+    badge="Engineering"
+    title="Building for the realities of AI clients, not just protocol compliance."
+    :panel="false"
+  >
     <!-- SVG Architecture Diagram -->
     <div
       class="relative w-full rounded-lg overflow-hidden border border-[var(--border)] bg-[#141416]"
@@ -30,7 +16,7 @@
       <svg
         viewBox="0 0 740 500"
         xmlns="http://www.w3.org/2000/svg"
-        class="w-full h-auto block select-none"
+        class="w-full max-w-full h-auto block select-none"
         role="img"
         aria-label="Engineering for AI Client Interoperability Diagram"
       >
@@ -724,7 +710,7 @@
         </p>
       </div>
     </div>
-  </div>
+  </DiagramFrame>
 </template>
 
 <style scoped>
