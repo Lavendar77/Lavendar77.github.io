@@ -30,7 +30,7 @@ const handleProjectToggle = async (projectId: string, isExpanded: boolean) => {
 </script>
 
 <template>
-  <section id="work" class="py-24">
+  <section id="work" class="py-24 overflow-x-clip">
     <div class="container-custom">
       <h2 class="text-4xl font-bold text-[var(--text)] mb-4">Work</h2>
       <p class="text-lg text-[var(--text-muted)] mb-16 max-w-2xl">

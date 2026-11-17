@@ -93,28 +93,20 @@ const handleMouseMove = (e: MouseEvent) => {
   swiperContainer.value.scrollLeft = scrollLeft.value - walk
 }
 
-// Touch handlers
+// Track horizontal swipes so a swipe doesn't also open the preview.
+// Native overflow scrolling handles the movement; hijacking touchmove
+// was preventing the page from scrolling to the other projects.
+const touchStartX = ref(0)
+
 const handleTouchStart = (e: TouchEvent) => {
-  if (!swiperContainer.value) return
-  isDragging.value = true
   hasDragged.value = false
-  startX.value = e.touches[0].pageX - swiperContainer.value.offsetLeft
-  scrollLeft.value = swiperContainer.value.scrollLeft
+  touchStartX.value = e.touches[0].pageX
 }
 
 const handleTouchMove = (e: TouchEvent) => {
-  if (!isDragging.value || !swiperContainer.value) return
-  const x = e.touches[0].pageX - swiperContainer.value.offsetLeft
-  if (Math.abs(x - startX.value) > 6) {
+  if (Math.abs(e.touches[0].pageX - touchStartX.value) > 6) {
     hasDragged.value = true
-    e.preventDefault()
   }
-  const walk = (x - startX.value) * 2
-  swiperContainer.value.scrollLeft = scrollLeft.value - walk
-}
-
-const handleTouchEnd = () => {
-  isDragging.value = false
 }
 
 const openPreviewModal = (index: number, e?: MouseEvent) => {
@@ -134,9 +126,18 @@ const openPreviewModal = (index: number, e?: MouseEvent) => {
 const updateActiveIndex = () => {
   if (!swiperContainer.value) return
   const container = swiperContainer.value
+  const slides = [...container.children] as HTMLElement[]
+  if (slides.length === 0) return
   const scrollLeft = container.scrollLeft
-  const containerWidth = container.clientWidth
-  const index = Math.round(scrollLeft / containerWidth)
+  let index = 0
+  let best = Infinity
+  slides.forEach((slide, i) => {
+    const dist = Math.abs(slide.offsetLeft - scrollLeft)
+    if (dist < best) {
+      best = dist
+      index = i
+    }
+  })
   activePreviewIndex.value = Math.min(index, props.project.previews.length - 1)
 }
 
@@ -144,9 +145,9 @@ const updateActiveIndex = () => {
 const selectPreview = (index: number) => {
   if (!swiperContainer.value) return
   const container = swiperContainer.value
-  const containerWidth = container.clientWidth
+  const slide = container.children[index] as HTMLElement | undefined
   container.scrollTo({
-    left: index * containerWidth,
+    left: slide ? slide.offsetLeft : index * container.clientWidth,
     behavior: 'smooth',
   })
   activePreviewIndex.value = index
@@ -193,7 +194,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <article class="mb-8 last:mb-0">
+  <article class="mb-8 last:mb-0 min-w-0 max-w-full">
     <!-- Compact View -->
     <button
       @click="toggleExpand"
@@ -265,132 +266,132 @@ onUnmounted(() => {
     <!-- Expanded View -->
     <div
       :id="`project-${project.id}-details`"
-      class="overflow-hidden transition-all ease-out"
-      :class="localExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'"
-      style="transition-duration: 300ms"
+      class="grid transition-[grid-template-rows,opacity] duration-300 ease-out"
+      :class="localExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"
     >
-      <div class="grid md:grid-cols-2 gap-12 pt-6 pb-8">
-        <div class="space-y-6">
-          <div v-if="hasProblemSolution" class="space-y-4">
-            <div>
-              <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">Problem</h4>
-              <p class="text-[var(--text)] whitespace-pre-line leading-relaxed">
-                {{ project.problem }}
-              </p>
-            </div>
+      <div class="overflow-hidden min-h-0 min-w-0">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-6 pb-8 min-w-0">
+          <div class="space-y-6 min-w-0 max-w-full">
+            <div v-if="hasProblemSolution" class="space-y-4">
+              <div>
+                <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">
+                  Problem
+                </h4>
+                <p class="text-[var(--text)] whitespace-pre-line leading-relaxed">
+                  {{ project.problem }}
+                </p>
+              </div>
 
-            <div>
-              <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">
-                Solution
-              </h4>
-              <p class="text-[var(--text)] whitespace-pre-line leading-relaxed">
-                {{ project.solution }}
-              </p>
-            </div>
-          </div>
-
-          <div v-else>
-            <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">Summary</h4>
-            <p class="text-[var(--text)] whitespace-pre-line leading-relaxed">
-              {{ project.outcome }}
-            </p>
-          </div>
-
-          <div>
-            <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">Outcome</h4>
-            <p class="text-[var(--text)] whitespace-pre-line leading-relaxed">
-              {{ project.outcome }}
-            </p>
-          </div>
-
-          <div v-if="project.demo || project.repo" class="flex flex-wrap items-center gap-4 pt-2">
-            <a
-              v-if="project.demo"
-              :href="project.demo"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sm font-medium text-[var(--primary)] hover:text-[var(--primary)]/80 hover:underline transition-colors inline-flex items-center gap-1.5"
-            >
-              {{ project.demoLabel || 'Visit Live Site →' }}
-            </a>
-            <a
-              v-if="project.repo"
-              :href="project.repo"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sm text-[var(--text-muted)] hover:text-[var(--primary)] hover:underline transition-colors inline-flex items-center gap-1.5"
-            >
-              {{ project.repoLabel || 'View Repository →' }}
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <div
-            v-if="project.previews.length > 0"
-            class="relative"
-            role="region"
-            :aria-label="`Preview gallery for ${project.title}`"
-          >
-            <div
-              ref="swiperContainer"
-              class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
-              style="
-                scroll-behavior: smooth;
-                -webkit-overflow-scrolling: touch;
-                scroll-snap-type: x mandatory;
-              "
-              @mousedown="handleMouseDown"
-              @touchstart="handleTouchStart"
-              @touchmove="handleTouchMove"
-              @touchend="handleTouchEnd"
-            >
-              <div
-                v-for="(preview, index) in project.previews"
-                :key="preview.id"
-                class="flex-shrink-0 w-full snap-center relative group/preview"
-                style="scroll-snap-align: center"
-                @click="openPreviewModal(index, $event)"
-              >
-                <!-- Floating Expand Button -->
-                <button
-                  type="button"
-                  @click.stop="openPreviewModal(index)"
-                  class="expand-preview-btn absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#16161ad8] hover:bg-[var(--secondary)] border border-[var(--border)] hover:border-[var(--primary)] text-[11px] font-mono text-[var(--text-muted)] hover:text-[var(--primary)] shadow-md transition-all duration-200 cursor-pointer backdrop-blur-xs"
-                  title="Click to open big screen overlay"
-                >
-                  <svg
-                    class="w-3.5 h-3.5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"
-                    />
-                  </svg>
-                  <span>Expand</span>
-                </button>
-
-                <div class="cursor-pointer">
-                  <ProjectPreview :preview="preview" />
-                </div>
+              <div>
+                <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">
+                  Solution
+                </h4>
+                <p class="text-[var(--text)] whitespace-pre-line leading-relaxed">
+                  {{ project.solution }}
+                </p>
               </div>
             </div>
-            <div class="flex items-center justify-between mt-2 px-1">
-              <p class="text-[11px] font-mono text-[var(--text-muted)]/70">
-                Click preview to inspect details
+
+            <div v-else>
+              <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">Summary</h4>
+              <p class="text-[var(--text)] whitespace-pre-line leading-relaxed">
+                {{ project.outcome }}
               </p>
-              <PreviewIndicators
-                v-if="project.previews.length > 1"
-                :count="project.previews.length"
-                :active-index="activePreviewIndex"
-                @select="selectPreview"
-              />
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-[var(--text-muted)] uppercase mb-2">Outcome</h4>
+              <p class="text-[var(--text)] whitespace-pre-line leading-relaxed">
+                {{ project.outcome }}
+              </p>
+            </div>
+
+            <div v-if="project.demo || project.repo" class="flex flex-wrap items-center gap-4 pt-2">
+              <a
+                v-if="project.demo"
+                :href="project.demo"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm font-medium text-[var(--primary)] hover:text-[var(--primary)]/80 hover:underline transition-colors inline-flex items-center gap-1.5"
+              >
+                {{ project.demoLabel || 'Visit Live Site →' }}
+              </a>
+              <a
+                v-if="project.repo"
+                :href="project.repo"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm text-[var(--text-muted)] hover:text-[var(--primary)] hover:underline transition-colors inline-flex items-center gap-1.5"
+              >
+                {{ project.repoLabel || 'View Repository →' }}
+              </a>
+            </div>
+          </div>
+
+          <div class="min-w-0 max-w-full">
+            <div
+              v-if="project.previews.length > 0"
+              class="relative min-w-0 max-w-full"
+              role="region"
+              :aria-label="`Preview gallery for ${project.title}`"
+            >
+              <div
+                ref="swiperContainer"
+                class="flex w-full min-w-0 max-w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                style="
+                  scroll-behavior: smooth;
+                  -webkit-overflow-scrolling: touch;
+                  scroll-snap-type: x mandatory;
+                "
+                @mousedown="handleMouseDown"
+                @touchstart="handleTouchStart"
+                @touchmove="handleTouchMove"
+              >
+                <div
+                  v-for="(preview, index) in project.previews"
+                  :key="preview.id"
+                  class="w-full min-w-full shrink-0 snap-center relative group/preview"
+                  style="scroll-snap-align: center"
+                  @click="openPreviewModal(index, $event)"
+                >
+                  <!-- Floating Expand Button -->
+                  <button
+                    type="button"
+                    @click.stop="openPreviewModal(index)"
+                    class="expand-preview-btn absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#16161ad8] hover:bg-[var(--secondary)] border border-[var(--border)] hover:border-[var(--primary)] text-[11px] font-mono text-[var(--text-muted)] hover:text-[var(--primary)] shadow-md transition-all duration-200 cursor-pointer backdrop-blur-xs"
+                    title="Click to open big screen overlay"
+                  >
+                    <svg
+                      class="w-3.5 h-3.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"
+                      />
+                    </svg>
+                    <span>Expand</span>
+                  </button>
+
+                  <div class="cursor-pointer">
+                    <ProjectPreview :preview="preview" />
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between mt-2 px-1">
+                <p class="text-[11px] font-mono text-[var(--text-muted)]/70">Click to inspect</p>
+                <PreviewIndicators
+                  v-if="project.previews.length > 1"
+                  :count="project.previews.length"
+                  :active-index="activePreviewIndex"
+                  @select="selectPreview"
+                />
+              </div>
             </div>
           </div>
         </div>
