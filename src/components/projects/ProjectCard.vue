@@ -113,10 +113,7 @@ const openPreviewModal = (index: number, e?: MouseEvent) => {
   if (hasDragged.value) return
   if (e) {
     const target = e.target as HTMLElement
-    // If clicking an internal interactive button (except the expand trigger), let that button handle it
-    if (target.closest('button:not(.expand-preview-btn)')) {
-      return
-    }
+    if (target.closest('button:not(.expand-preview-btn)')) return
   }
   activeModalIndex.value = index
   isModalOpen.value = true
@@ -266,7 +263,7 @@ onUnmounted(() => {
     <!-- Expanded View -->
     <div
       :id="`project-${project.id}-details`"
-      class="grid transition-[grid-template-rows,opacity] duration-300 ease-out"
+      class="grid"
       :class="localExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"
     >
       <div class="overflow-hidden min-h-0 min-w-0">
@@ -354,7 +351,6 @@ onUnmounted(() => {
                   style="scroll-snap-align: center"
                   @click="openPreviewModal(index, $event)"
                 >
-                  <!-- Floating Expand Button -->
                   <button
                     type="button"
                     @click.stop="openPreviewModal(index)"

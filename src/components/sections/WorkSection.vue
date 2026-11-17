@@ -12,19 +12,14 @@ onMounted(() => {
   }
 })
 
-// Wait for expand/collapse transition so layout is stable; then instant scroll (no scroll animation)
-const TRANSITION_MS = 300
-
 const handleProjectToggle = async (projectId: string, isExpanded: boolean) => {
   expandedProjectId.value = isExpanded ? projectId : null
   if (isExpanded) {
     await nextTick()
-    setTimeout(() => {
-      const el = document.querySelector(`[data-project-id="${projectId}"]`) as HTMLElement | null
-      if (el) {
-        el.scrollIntoView({ behavior: 'auto', block: 'start' })
-      }
-    }, TRANSITION_MS)
+    const el = document.querySelector(`[data-project-id="${projectId}"]`) as HTMLElement | null
+    if (el) {
+      el.scrollIntoView({ behavior: 'auto', block: 'start' })
+    }
   }
 }
 </script>
