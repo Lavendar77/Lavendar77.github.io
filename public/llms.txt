@@ -1,74 +1,38 @@
 # Adeyinka - Senior Software Engineer
 
-> Senior Software Engineer specializing in backend systems, scalable cloud architectures, and dependable AI-native agent workflows. 10+ years of production experience building high-throughput services, queue pipelines, and distributed software.
+> Senior Software Engineer specializing in backend systems, scalable cloud architectures, and dependable AI-native agent workflows. 10+ years of production experience building high-throughput services, queue pipelines, and distributed software. Focus: Backend · Cloud · AI Systems. Available for remote work or relocation.
 
-## Overview
+Role: Senior Software Engineer (Backend, Cloud Architecture & AI Systems). Current focus includes Model Context Protocol (MCP), agent orchestration, and deterministic boundaries around probabilistic LLM systems.
 
-- Role: Senior Software Engineer (Backend, Cloud Architecture & AI Systems)
-- Location & Availability: Remote (Global) / Open to Relocation
-- Portfolio: https://lavendar77.github.io
-- GitHub: https://github.com/lavendar77
-- LinkedIn: https://linkedin.com/in/adeyinka-adefolurin
-- Email: folurinyinka@gmail.com
-- Resume: https://drive.google.com/file/d/17wjEZG9f9sC5u0ivzuQ3H3b0YIDNx29H/view?usp=sharing
+## Links
+
+- [Portfolio](https://lavendar77.github.io): Personal site with case studies, tech stack, and contact
+- [Selected work](https://lavendar77.github.io/#work): Production case studies with architecture previews
+- [GitHub](https://github.com/lavendar77): Open-source and project repositories
+- [LinkedIn](https://linkedin.com/in/adeyinka-adefolurin): Professional profile
+- [Resume](https://drive.google.com/file/d/17wjEZG9f9sC5u0ivzuQ3H3b0YIDNx29H/view?usp=sharing): Full CV
+- [Email](mailto:folurinyinka@gmail.com): folurinyinka@gmail.com
+
+## Production Case Studies
+
+- [Poptin MCP Integration](https://www.poptin.com/mcp): Technical Lead. Architected and led Poptin's first MCP server so AI assistants can orchestrate marketing workflows beyond REST APIs. Stack: PHP, Laravel, MCP, AI Agents, LLM Integration, REST APIs, AWS S3. Published to the official MCP Registry. Repository: [Poptin-MCP](https://github.com/Poptin-LTD/Poptin-MCP)
+- [Poptin Campaign Pipeline](https://poptin.com): Senior Backend Engineer. Decoupled SNS webhooks into Redis/Horizon queues and parallel batched delivery. Impact: 46.6% faster campaign completion, 87.4% higher throughput, 35.8% faster batch execution, zero peak-load crashes. Stack: Laravel, AWS SNS/SES, CloudWatch, Redis, Horizon
+- [Gerocare Cloud Migration](https://gerocare.org): Lead Software Engineer. Migrated healthcare platform from shared hosting to GCP (Compute Engine, Cloud SQL, GCS) with GitHub Actions CI/CD and zero-downtime cutover. Impact: eliminated recurring downtime, ~40% faster load times, zero data loss. Stack: Laravel, Vue.js, GCP, Nginx, Cloudflare
+- [Hypetag Ecommerce Backend](https://hypetag.com): Lead Backend Engineer. Cost-aware MySQL full-text search via Laravel Scout and transparent multi-currency checkout with Paystack. Stack: Laravel, MySQL, Scout, DigitalOcean, Cloudinary, Paystack
+- [Connect Nigeria Directory Backend](https://connectnigeria.com): Backend Engineer. Safe high-volume spreadsheet import pipeline plus dedicated Meilisearch ranking. Stack: Laravel, MySQL, Meilisearch, Scout, Algolia, ElastiCache, S3, GitLab CI/CD
 
 ## Core Technical Competencies
 
-### Backend & Distributed Systems
-- Languages & Runtimes: PHP, TypeScript, JavaScript, Node.js, SQL
-- Frameworks & APIs: Laravel, Express, REST APIs, GraphQL
-- Distributed Architecture: Microservices, Event-Driven Architecture, Kafka, Laravel Horizon, Background Queue Pipelines
-
-### AI Systems & Agents
-- Agentic Architecture: AI Agents, Model Context Protocol (MCP), Agent Orchestration
-- LLM Integrations: OpenAI, Anthropic Claude, Google Gemini APIs
-- Engineering Practice: Context Engineering, Deterministic Boundaries, Tool Calling & Workflows, Reliability & Verification
-
-### Cloud & DevOps Infrastructure
-- Cloud Platforms: Amazon Web Services (AWS), Google Cloud Platform (GCP), DigitalOcean, Vercel
-- AWS Ecosystem: Lambda, S3, CloudFront, SQS, SNS, SES, CloudWatch, ElastiCache, MediaConvert
-- Infrastructure & Automation: Docker, Serverless Architecture, GitHub Actions, GitLab CI/CD, Nginx, Cloudflare
-
-### Data, Storage & Ecosystem
-- Databases: PostgreSQL, MySQL, Redis
-- Search & Retrieval: Meilisearch, Laravel Scout, Algolia, Full-text indexing
-- Platform Integrations: Payment Gateways (Stripe, Paystack, multi-currency checkout), Cloudinary, Media Streaming (Video.js)
-- Testing & Quality: Pest, PHPUnit, ESLint, Prettier, Git
-
-## Production Case Studies & Impact
-
-### 1. Campaign Processing & Delivery Pipeline Overhaul (Poptin)
-- Role: Senior Backend Engineer
-- Stack: Laravel, AWS SNS, AWS SES, CloudWatch, Redis, Horizon
-- Problem: High-volume email platform experiencing server crashes from synchronous webhook callbacks and sequential subscriber sending.
-- Solution: Decoupled SNS delivery webhooks asynchronously via Redis queues. Refactored delivery into parallel batched execution with real-time memory monitoring.
-- Impact: 46.6% faster campaign completion, 87.4% higher throughput, 35.8% faster batch execution, and zero production crashes under peak load.
-
-### 2. Healthcare Platform Cloud Migration (Gerocare)
-- Role: Lead Software Engineer
-- Stack: Laravel, Vue.js, Google Cloud Platform (Compute Engine, Cloud SQL, GCS), Nginx, GitHub Actions, Cloudflare
-- Problem: Critical telemedicine and doctor-visit workflows failing due to outages on legacy shared hosting.
-- Solution: Led full cloud migration to GCP with Cloud SQL and automated GitHub Actions CI/CD; executed via zero-downtime DNS cutover with rollback path.
-- Impact: 100% elimination of recurring downtime, ~40% faster application load times, zero data loss, and sustained production stability.
-
-### 3. Luxury Ecommerce Backend: Multi-Currency & Search (Hypetag)
-- Role: Lead Backend Engineer
-- Stack: Laravel, MySQL, Laravel Scout, DigitalOcean, Cloudinary, Paystack
-- Problem: Discovery and checkout needed under cost constraints with dynamic currency display vs charging rules.
-- Solution: Tuned MySQL full-text search with Laravel Scout; built dynamic multi-currency rates adjustment layer with clear fallback charging logic.
-- Impact: Cost-effective search relevance, transparent multi-currency transactions, and resilient order/payment lifecycles.
-
-### 4. Scalable Directory Backend: Safe Ingestion & High-Relevance Search (Connect Nigeria)
-- Role: Backend Engineer
-- Stack: Laravel, MySQL, Meilisearch, Laravel Scout, Algolia, AWS ElastiCache, AWS S3, GitLab CI/CD
-- Problem: Inconsistent field agent spreadsheet uploads causing corrupt data and slow discovery across large directories.
-- Solution: Built strict validation and deduplication import pipeline; deployed dedicated Meilisearch instance with custom business ranking rules.
-- Impact: Safe high-volume ingestion, instant search response times, and reliable operational tooling.
+- [Backend & Distributed Systems](https://lavendar77.github.io/#tech-stack): PHP, TypeScript, JavaScript, Node.js, Laravel, Express, REST, GraphQL, microservices, Kafka, Horizon, event-driven queues
+- [AI Systems & Agents](https://lavendar77.github.io/#current-focus): AI Agents, Model Context Protocol (MCP), agent orchestration, OpenAI / Anthropic Claude / Gemini, context engineering, tool calling, deterministic boundaries
+- [Cloud & DevOps](https://lavendar77.github.io/#tech-stack): AWS (Lambda, S3, CloudFront, SQS, SNS, SES, CloudWatch, ElastiCache, MediaConvert), GCP, DigitalOcean, Vercel, Docker, serverless, GitHub Actions, GitLab CI/CD, Nginx, Cloudflare
+- [Data & Platform](https://lavendar77.github.io/#tech-stack): PostgreSQL, MySQL, Redis, Meilisearch, Laravel Scout, Algolia, Stripe/Paystack, Cloudinary, Pest/PHPUnit
 
 ## Engineering Principles
 
-1. System Design First: Scalability, maintainability, and reliability drive architectural decisions. Every component exists for an explicit purpose.
-2. Performance by Default: Performance is designed into database schema, query patterns, and API lifecycles from day one.
-3. Pragmatic Engineering: Ship measurable value without taking on unmanaged technical debt. Choose the right tool for the problem rather than following trends.
-4. Reliability & Observability: Resilient failure handling, observable telemetry, and verification boundaries built into both classical backends and probabilistic AI systems.
-5. Deterministic Boundaries: AI models are probabilistic, but the surrounding software must remain deterministic with strict contracts, constrained tool permissions, and explicit fallback paths.
+- [How I work](https://lavendar77.github.io/#principles): System design first; performance by default; pragmatic shipping; reliability and observability; deterministic boundaries around AI systems
+
+## Optional
+
+- [Special mentions](https://lavendar77.github.io/#special-mentions): Additional projects including Afrostream (SVOD team lead), KSBTech backend rebuild, and Combinenet Logistics
+- [Contact](https://lavendar77.github.io/#contact): Availability and preferred contact channels
